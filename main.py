@@ -1,28 +1,17 @@
-from core.registry import AgentRegistry
-from core.orchestrator import Orchestrator
-from agents.api_agent import APIAgent
-from agents.base_agent import BaseAgent
+from fastapi import FastAPI
+from pydantic import BaseModel
+from workflows.orchestrator_flow import orchestrator_flow
 
-# Dummy agents
-class StaticAgent(BaseAgent):
-    def process(self, query):
-        return "Operational excellence focuses on continuous improvement."
+app = FastAPI(title="Cloud Orchestrator Agent")
 
-class SummaryAgent(BaseAgent):
-    def process(self, query):
-        return "Your workloads were stable with 99.9% uptime last week."
+class Query(BaseModel):
+    prompt: str
+
+@app.post("/query")
+def query_agent(data: Query):
+    result = orchestrator_flow(data.prompt)
+    return {"response": result}
 
 if __name__ == "__main__":
-    registry = AgentRegistry()
-    registry.register("api", APIAgent("API Agent"))
-    registry.register("static", StaticAgent("Static Agent"))
-    registry.register("summary", SummaryAgent("Summary Agent"))
-
-    orch = Orchestrator(registry)
-    print("=== MOYA Framework Prototype ===")
-
-    while True:
-        q = input("\nAsk MOYA ➜ ")
-        if q.lower() in ["exit", "quit"]:
-            break
-        print("→", orch.route_query(q))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
