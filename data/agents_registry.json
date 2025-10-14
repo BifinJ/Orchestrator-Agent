@@ -1,0 +1,12 @@
+[
+  {
+    "name": "dummy_agent",
+    "capabilities": ["test","dummy","check"],
+    "module": "agents.dummy_agent"
+  },
+  {
+    "name": "static_agent",
+    "capabilities": ["policy", "docs", "configuration"],
+    "module": "agents.static_agent"
+  }
+]

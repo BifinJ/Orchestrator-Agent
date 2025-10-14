@@ -21,3 +21,9 @@ class APIAgent(BaseAgent):
             return f"Your current monthly cost is approximately ${val}."
         else:
             return "API agent couldn’t find matching data."
+
+
+agent_instance = APIAgent()
+
+def process(query: str):
+    return agent_instance.process(query)

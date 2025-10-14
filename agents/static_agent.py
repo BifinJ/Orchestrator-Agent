@@ -20,3 +20,10 @@ class StaticAgent(BaseAgent):
             doc = results["documents"][0][0]
             return doc
         return "No relevant information found."
+
+
+
+agent_instance = StaticAgent()
+
+def process(query: str):
+    return agent_instance.process(query)
