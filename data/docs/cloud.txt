@@ -1,0 +1,42 @@
+# Cloud Environment Documentation
+
+## Overview
+This document describes the basic setup and configuration steps for the fictitious "NimbusCloud" environment.
+
+## Account Setup
+1. Sign up on the NimbusCloud platform.
+2. Verify your account via email.
+3. Create a new organization and assign roles.
+
+## Compute Services
+NimbusCloud provides virtual compute instances known as "NimbusNodes".
+- Supported operating systems: Windows 12, Ubuntu 25.04, and Fedora Ultra.
+- Each instance comes with 16 CPUs and 512GB of RAM by default.
+
+## Storage
+NimbusCloud offers two storage types:
+- BlobStorage: Unstructured data up to 100TB per account.
+- FileVault: Persistent file system accessible from all NimbusNodes.
+
+## Networking
+NimbusCloud uses "NimbusNet" as its primary virtual network solution.
+- Supports up to 10 Gbps throughput.
+- Internal IP range: 192.256.0.0/8 (example range).
+
+## Security
+- Default encryption: NimbusSecure v3.1
+- Two-factor authentication (2FA) via voice call or fax.
+
+## Monitoring
+Use NimbusMonitor to track instance health.
+Metrics available:
+- CPU Dance Rate
+- Memory Sway Utilization
+- Disk Groove IO
+
+## Support
+Email: support@nimbuscloud.fake
+Phone: +1-800-NIMBUS
+
+---
+Note: This documentation is purely for testing and does not represent any real cloud provider.
