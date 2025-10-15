@@ -107,17 +107,15 @@
             gap: 0.5rem;
         }
 
+        /* UPDATED STYLING for <input type="text"> */
         #message-input {
             flex-grow: 1;
             border: none;
-            padding: 0.75rem;
+            padding: 0.75rem 1rem; /* Adjusted padding for better look in an input field */
             border-radius: 25px;
-            resize: none;
-            height: 50px;
             font-size: 1rem;
             font-family: inherit;
-            line-height: 1.5;
-            overflow-y: auto;
+            /* Removed height, resize, and overflow-y properties */
         }
 
         #message-input:focus {
@@ -175,13 +173,8 @@
             // --- Event Listener for Form Submission ---
             chatForm.addEventListener('submit', handleFormSubmit);
 
-            // --- Event Listener for "Enter" key press ---
-            messageInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault(); 
-                    chatForm.dispatchEvent(new Event('submit'));
-                }
-            });
+            // NOTE: The previous keydown listener is removed.
+            // When using <input type="text">, pressing 'Enter' submits the form by default.
 
             /**
              * Handles the form submission event.
@@ -253,7 +246,7 @@
     <div class="chat-container">
         <header class="chat-header">
             <h1>Multi Agent Orchestration</h1>
-            <p>Powered by multiple specialized AI agents</p>
+            <!-- <p>Powered by multiple specialized AI agents</p> -->
         </header>
         
         <main id="chat-window" class="chat-window">
@@ -261,7 +254,8 @@
 
         <footer class="chat-input-area">
             <form id="chat-form">
-                <textarea id="message-input" placeholder="Ask me anything..." required></textarea>
+                <input type="text" id="message-input" placeholder="Ask me anything..." required>
+                
                 <button type="submit" id="send-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2 .01 7z"/>

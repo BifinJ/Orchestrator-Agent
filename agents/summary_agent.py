@@ -104,7 +104,6 @@ class SummaryAgent(BaseAgent):
             if start <= l["date"] <= end:
                 logs.append(l)
         return logs
-
     def process(self, query: str) -> str:
         start, end = self.parse_date_query(query)
         filtered = self.filter_logs(start, end)
@@ -112,24 +111,28 @@ class SummaryAgent(BaseAgent):
         if not filtered:
             return "No logs found for the requested period."
 
-        uptimes = [l["uptime"] for l in filtered]
-        costs = [l["cost"] for l in filtered]
-        avg_uptime = mean(uptimes)
-        total_cost = sum(costs)
-        trend = "increasing" if costs[-1] > costs[0] else "decreasing"
+        # Prepare logs in readable format
+        log_texts = []
+        for l in filtered:
+            log_texts.append(
+                f"Date: {l['date'].strftime('%Y-%m-%d')}, "
+                f"Uptime: {l['uptime']}%, "
+                f"Cost: ${l['cost']}, "
+                f"CPU: {l['cpu_usage']}%, "
+                f"Memory: {l['memory_usage']}%, "
+                f"Region: {l['region']}"
+            )
 
-        raw_summary = (
-            f"From {start.date()} to {end.date()}:\n"
-            f"Average uptime: {avg_uptime:.2f}%\n"
-            f"Total cost: ${total_cost:.2f}\n"
-            f"Trend: {trend}"
-        )
+        logs_str = "\n".join(log_texts)
 
+        # Create prompt for Gemini
         prompt = (
-            f"Summarize the following cloud performance data for user query '{query}':\n"
-            f"{raw_summary}\n"
-            f"Respond in a natural, concise paragraph with key insights."
+            f"Summarize the following cloud logs for the user query '{query}':\n"
+            f"{logs_str}\n"
+            f"Provide insights such as trends, unusual spikes, or cost optimization opportunities, "
+            f"in a concise, natural paragraph."
         )
 
+        # Send prompt to Gemini
         summary = self.llm.generate_content(prompt)
         return summary.text

@@ -15,11 +15,11 @@ class Selector:
             logger.warning("No agents registered.")
             return []
 
-        summary = "\n".join([f"{m.name}: {', '.join(m.capabilities)}" for m in registry])
+        summary = "\n".join([f"{m.name}: {', '.join(m.description)}" for m in registry])
 
         # Get classification from Gemini
         agent_names = await self.llm.classify_agents(message, summary)
-
+        print("Summary",summary)
         if not agent_names:
             logger.warning("Gemini returned no matches, fallback to keyword.")
             return self._fallback_keyword(message, registry, top_k)
@@ -32,7 +32,7 @@ class Selector:
         msg = message.lower()
         scored = []
         for m in registry:
-            score = sum(tok in msg for cap in m.capabilities for tok in cap.lower().split())
+            score = sum(tok in msg for cap in m.description for tok in cap.lower().split())
             if score > 0:
                 scored.append((m, score))
         scored.sort(key=lambda x: -x[1])

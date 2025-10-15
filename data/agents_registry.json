@@ -1,13 +1,13 @@
 [
   {
     "name": "static_agent",
-    "capabilities": ["policy", "docs", "configuration"],
+    "description": "policy, docs, documentation, manual, reference, explain, describe, how to, configuration, settings, procedure, guidelines, knowledge base, instruction",
     "module": "agents.static_agent",
     "class_name": "StaticAgent"
   },
   {
-    "name": "summary_agent",
-    "capabilities": ["summary", "summarise", "summarize", "happened"],
+    "name": "monitoring_agent",
+    "description": "monitoring, summary, summarise, summarize, report, trend, insight, overview, analysis, performance, uptime, CPU usage, memory usage, cost, billing, logs, activity, happened, previous, last week, last month, yesterday, daily summary, monthly report, statistics",
     "module": "agents.summary_agent",
     "class_name": "SummaryAgent"
   }

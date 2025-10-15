@@ -23,6 +23,7 @@ class Orchestrator:
         registry_summary = "\n".join([f"{t.name}: {t.description}" for t in self.tools])
         from llm.gemini import LangChainGemini
         llm = LangChainGemini()
+        print("REGISTRRY",registry_summary)
         selected_agent_names = await llm.classify_agents(message, registry_summary)
         logger.info(f"Selected agents: {selected_agent_names}")
 
