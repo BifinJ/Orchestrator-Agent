@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 import os
 from dateutil import parser
 import re
+from datetime import timedelta
+from statistics import mean
 
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -104,35 +106,91 @@ class SummaryAgent(BaseAgent):
             if start <= l["date"] <= end:
                 logs.append(l)
         return logs
+    
+    
     def process(self, query: str) -> str:
         start, end = self.parse_date_query(query)
         filtered = self.filter_logs(start, end)
-
+    
         if not filtered:
             return "No logs found for the requested period."
-
-        # Prepare logs in readable format
-        log_texts = []
-        for l in filtered:
-            log_texts.append(
-                f"Date: {l['date'].strftime('%Y-%m-%d')}, "
-                f"Uptime: {l['uptime']}%, "
-                f"Cost: ${l['cost']}, "
-                f"CPU: {l['cpu_usage']}%, "
-                f"Memory: {l['memory_usage']}%, "
-                f"Region: {l['region']}"
-            )
-
+    
+        # ✅ Sort logs by date
+        filtered.sort(key=lambda x: x["date"])
+    
+        # ✅ Detect missing days in the log period
+        all_dates = [log["date"] for log in filtered]
+        missing_dates = []
+        current_date = filtered[0]["date"]
+        while current_date <= filtered[-1]["date"]:
+            if current_date not in all_dates:
+                missing_dates.append(current_date.strftime("%Y-%m-%d"))
+            current_date += timedelta(days=1)
+    
+        # ✅ Handle missing logs gracefully
+        total_days_expected = (filtered[-1]["date"] - filtered[0]["date"]).days + 1
+        coverage_ratio = len(filtered) / total_days_expected * 100
+    
+        # ✅ Precompute accurate metrics
+        avg_uptime = mean([l["uptime"] for l in filtered])
+        avg_cost = mean([l["cost"] for l in filtered])
+        avg_cpu = mean([l["cpu_usage"] for l in filtered])
+        avg_memory = mean([l["memory_usage"] for l in filtered])
+    
+        total_cost = sum([l["cost"] for l in filtered])
+        start_date = filtered[0]["date"].strftime("%Y-%m-%d")
+        end_date = filtered[-1]["date"].strftime("%Y-%m-%d")
+    
+        # ✅ Compute trends
+        def trend(field):
+            start_val, end_val = filtered[0][field], filtered[-1][field]
+            if end_val > start_val: return "increased"
+            elif end_val < start_val: return "decreased"
+            return "remained stable"
+    
+        trends = {
+            "uptime_trend": trend("uptime"),
+            "cost_trend": trend("cost"),
+            "cpu_trend": trend("cpu_usage"),
+            "memory_trend": trend("memory_usage"),
+        }
+    
+        # ✅ Precomputed structured summary
+        precomputed_summary = {
+            "period": f"{start_date} to {end_date}",
+            "total_days_expected": total_days_expected,
+            "total_days_logged": len(filtered),
+            "data_coverage": f"{coverage_ratio:.2f}%",
+            "missing_days": missing_dates,
+            "total_cost": round(total_cost, 2),
+            "avg_uptime": round(avg_uptime, 2),
+            "avg_cost": round(avg_cost, 2),
+            "avg_cpu_usage": round(avg_cpu, 2),
+            "avg_memory_usage": round(avg_memory, 2),
+            **trends
+        }
+    
+        # ✅ Logs to readable format for LLM context
+        log_texts = [
+            f"Date: {l['date'].strftime('%Y-%m-%d')}, Uptime: {l['uptime']}%, Cost: ${l['cost']}, "
+            f"CPU: {l['cpu_usage']}%, Memory: {l['memory_usage']}%, Region: {l['region']}"
+            for l in filtered
+        ]
         logs_str = "\n".join(log_texts)
-
-        # Create prompt for Gemini
+    
+        # ✅ LLM prompt for natural summary
         prompt = (
-            f"Summarize the following cloud logs for the user query '{query}':\n"
-            f"{logs_str}\n"
-            f"Provide insights such as trends, unusual spikes, or cost optimization opportunities, "
-            f"in a concise, natural paragraph."
+            f"You are a cloud performance summary agent.\n"
+            f"Here are verified metrics (computed by system):\n"
+            f"{json.dumps(precomputed_summary, indent=2)}\n\n"
+            f"Logs:\n{logs_str}\n\n"
+            f"Missing log days: {len(missing_dates)} "
+            f"({', '.join(missing_dates[:5]) + ('...' if len(missing_dates) > 5 else '')})\n\n"
+            f"Create a concise, human-readable summary for '{query}'. "
+            f"Highlight uptime, cost, and performance trends, note missing logs, "
+            f"and suggest next steps for optimization. Do not modify numerical values."
         )
-
-        # Send prompt to Gemini
+    
         summary = self.llm.generate_content(prompt)
         return summary.text
+    

@@ -12,16 +12,16 @@ app = FastAPI(title="Orchestrator Agent")
 origins = [
     "http://localhost",
     "http://127.0.0.1",
-    "http://127.0.0.1:5500", # Example for VS Code Live Server
-    "null" # Important for local file:// origins
+    "http://127.0.0.1:5500",
+    "null"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,       # Allows specific origins
+    allow_origins=origins,     
     allow_credentials=True,
-    allow_methods=["*"],         # Allows all methods (GET, POST, etc.)
-    allow_headers=["*"],         # Allows all headers
+    allow_methods=["*"],     
+    allow_headers=["*"],     
 )
 
 
