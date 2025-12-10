@@ -1,0 +1,12 @@
+[
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-07T16:56:13.741000+00:00",
+    "message": "2025-12-07T16:56:13.741260+00:00 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-07T16:56:13.741000+00:00",
+    "message": "2025-12-07T16:56:13.741260+00:00 [ERROR] Random failure occurred"
+  }
+]

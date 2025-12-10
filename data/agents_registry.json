@@ -6,7 +6,7 @@
     "class_name": "StaticAgent"
   },
   {
-    "name": "monitoring_agent",
+    "name": "summary_agent",
     "description": "monitoring, summary, summarise, summarize, report, trend, insight, overview, analysis, performance, uptime, CPU usage, memory usage, cost, billing, logs, activity, happened, previous, last week, last month, yesterday, daily summary, monthly report, statistics",
     "module": "agents.summary_agent",
     "class_name": "SummaryAgent"

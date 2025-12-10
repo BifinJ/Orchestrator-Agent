@@ -1,0 +1,366 @@
+[
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  },
+  {
+    "type": "metric_anomaly",
+    "metric": "DB_Connections",
+    "value": 25.0,
+    "zscore": 3.389400872943766,
+    "timestamp": "2025-12-07T17:15:32.892575Z"
+  }
+]
