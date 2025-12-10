@@ -21,7 +21,7 @@ class SummaryAgent(BaseAgent):
 
         genai.configure(api_key=GOOGLE_API_KEY)
 
-        self.llm = genai.GenerativeModel("gemini-2.0-flash-lite")
+        self.llm = genai.GenerativeModel("gemini-2.5-flash-lite")
 
 
     def parse_date_query(self, query: str):

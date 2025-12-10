@@ -8,7 +8,7 @@ from utils.logger import logger
 load_dotenv()
 
 class LLMManager:
-    def __init__(self, provider="gemini-2.0-flash-lite"):
+    def __init__(self, provider="gemini-2.5-flash-lite"):
         self.provider = provider
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:

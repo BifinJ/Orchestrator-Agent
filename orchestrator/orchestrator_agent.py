@@ -53,7 +53,7 @@ tools = [
 
 def get_orchestrator_agent():
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash-lite",
+        model="gemini-2.5-flash-lite",
         google_api_key=GOOGLE_API_KEY
     )
     agent = initialize_agent(tools, llm, agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)

@@ -23,7 +23,7 @@ class Fuser:
     """
     def __init__(self):
         """Initializes the Fuser with a Gemini model instance."""
-        self.model = genai.GenerativeModel("gemini-2.0-flash-lite")
+        self.model = genai.GenerativeModel("gemini-2.5-flash-lite")
 
     async def fuse(self, user_message: str, agent_responses: List[Dict]) -> str:
         """

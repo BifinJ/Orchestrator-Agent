@@ -1,7 +1,7 @@
 [
   {
     "name": "static_agent",
-    "description": "policy, docs, documentation, manual, reference, explain, describe, how to, configuration, settings, procedure, guidelines, knowledge base, instruction",
+    "description": "policy, AWS, docs, documentation, manual, reference, explain, describe, how to, configuration, settings, procedure, guidelines, knowledge base, instruction, aws cli, ec2, s3, iam, rds, lambda, cloudformation, dynamodb, vpc, sns, sqs, cloudwatch, eks, route53, redshift, athena, glacier, cloudfront, waf, trusted advisor, well-architected framework",
     "module": "agents.static_agent",
     "class_name": "StaticAgent"
   },

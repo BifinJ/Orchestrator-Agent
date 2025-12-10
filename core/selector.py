@@ -7,7 +7,7 @@ from utils.logger import logger
 class Selector:
     def __init__(self, metadata_mgr):
         self.metadata = metadata_mgr
-        self.llm = LLMManager(provider="gemini-2.0-flash-lite")
+        self.llm = LLMManager(provider="gemini-2.5-flash-lite")
 
     async def select_agents(self, message: str, top_k: int = 3) -> List[AgentMetadata]:
         registry = self.metadata.list_all()
