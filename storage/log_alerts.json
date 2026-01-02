@@ -1,12 +1,47 @@
 [
   {
     "type": "log_error",
-    "timestamp": "2025-12-07T16:56:13.741000+00:00",
-    "message": "2025-12-07T16:56:13.741260+00:00 [ERROR] Random failure occurred"
+    "timestamp": "2025-12-31T05:20:07+00:00",
+    "message": "2025-12-31 05:20:07,224 [ERROR] Simulated application error"
   },
   {
     "type": "log_error",
-    "timestamp": "2025-12-07T16:56:13.741000+00:00",
-    "message": "2025-12-07T16:56:13.741260+00:00 [ERROR] Random failure occurred"
+    "timestamp": "2025-12-31T05:20:56+00:00",
+    "message": "2025-12-31 05:20:56,088 [ERROR] Database connection timeout"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:33+00:00",
+    "message": "2025-12-31 05:21:33,915 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:37+00:00",
+    "message": "2025-12-31 05:21:37,131 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:37+00:00",
+    "message": "2025-12-31 05:21:37,969 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:38+00:00",
+    "message": "2025-12-31 05:21:38,662 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:39+00:00",
+    "message": "2025-12-31 05:21:39,327 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:40+00:00",
+    "message": "2025-12-31 05:21:40,017 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "timestamp": "2025-12-31T05:21:41+00:00",
+    "message": "2025-12-31 05:21:41,337 [ERROR] Random failure occurred"
   }
 ]

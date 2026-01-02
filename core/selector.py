@@ -1,6 +1,6 @@
 # core/selector.py
 from typing import List
-from models.schemas import AgentMetadata
+from data.schemas import AgentMetadata
 from llm.llm_manager import LLMManager
 from utils.logger import logger
 
@@ -15,11 +15,13 @@ class Selector:
             logger.warning("No agents registered.")
             return []
 
-        summary = "\n".join([f"{m.name}: {', '.join(m.description)}" for m in registry])
+        summary = "\n".join(
+            f"{m.name}: {m.description}" for m in registry
+        )
+        print("Summary:\n", summary)
 
         # Get classification from Gemini
         agent_names = await self.llm.classify_agents(message, summary)
-        print("Summary",summary)
         if not agent_names:
             logger.warning("Gemini returned no matches, fallback to keyword.")
             return self._fallback_keyword(message, registry, top_k)

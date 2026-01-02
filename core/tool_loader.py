@@ -1,7 +1,7 @@
 # core/tool_loader.py
 from langchain.tools import Tool # type: ignore
 import importlib
-from models.schemas import AgentMetadata
+from data.schemas import AgentMetadata
 from typing import List
 
 def create_tools(metadata: List[AgentMetadata]) -> list[Tool]:

@@ -1,16 +1,11 @@
-# agents/dummy_agent.py
 from .base_agent import BaseAgent
 
 class DummyAgent(BaseAgent):
-    def __init__(self, name="Dummy Agent"):
-        super().__init__(name)
+    name = "dummy_agent"
+    description = "A dummy placeholder agent"
 
-    def process(self, query: str) -> str:
-        # Just return a dummy response for testing
-        return f"Dummy response for query: '{query}'"
+    def __init__(self):
+        super().__init__(self.name, self.description)
 
-# Create a module-level callable for orchestrator
-agent_instance = DummyAgent()
-
-def process(query: str):
-    return agent_instance.process(query)
+    async def run(self, message: str, context: dict = None):
+        return f"Dummy processed: {message}"

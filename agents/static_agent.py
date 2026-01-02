@@ -21,7 +21,8 @@ class StaticAgent(BaseAgent):
     def embed(self, text):
         return self.embed_model.encode(text).tolist()
 
-    def process(self, query):
+    async def run(self, query: str, context: dict = None):
+        context = context or {}
         query_embed = self.embed(query)
 
         results = self.collection.query(

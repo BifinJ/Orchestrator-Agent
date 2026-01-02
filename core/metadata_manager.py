@@ -1,5 +1,5 @@
 import json
-from models.schemas import AgentMetadata
+from data.schemas import AgentMetadata
 from typing import List
 from utils.logger import logger
 
