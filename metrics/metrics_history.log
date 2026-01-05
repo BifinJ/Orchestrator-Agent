@@ -1517,3 +1517,11 @@
 {"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "NetworkIn", "value": 2929.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
 {"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSIOBalance%", "value": 99.2, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
 {"timestamp": "2026-01-06T00:11:00+00:00", "namespace": "AWS/EC2", "metric": "CPUSurplusCreditBalance", "value": 0.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSWriteOps", "value": 40.2, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSByteBalance%", "value": 99.4, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSReadBytes", "value": 0.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSReadOps", "value": 0.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "NetworkPacketsOut", "value": 17.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "NetworkOut", "value": 2933.4, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:10:00+00:00", "namespace": "AWS/EC2", "metric": "EBSWriteBytes", "value": 250675.2, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
+{"timestamp": "2026-01-06T00:11:00+00:00", "namespace": "AWS/EC2", "metric": "CPUSurplusCreditsCharged", "value": 0.0, "dimensions": [{"Name": "InstanceId", "Value": "i-08a5d12495bc0acf5"}]}
