@@ -1,5 +1,5 @@
-from data_loader import load_metrics, load_logs
-from diagnostic_agent import DiagnosticAgent
+from .data_loader import load_metrics, load_logs
+from .diagnostic_agent import DiagnosticAgent
 
 from learning.action_store import record_action
 from learning.incident_store import record_incident

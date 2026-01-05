@@ -1,5 +1,5 @@
 import asyncio
-from utils.logger import logger
+from data.logger import logger
 
 async def gather_with_timeout(tasks, timeout: float):
     """Run tasks concurrently with timeout handling."""

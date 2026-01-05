@@ -1,5 +1,8 @@
 from core.metadata_manager import MetadataManager
 
+import threading
+from agents.monitoring_agent.monitoring_agent import MonitoringAgent
+
 
 # main.py
 from fastapi import FastAPI
@@ -39,7 +42,15 @@ class Query(BaseModel):
 #async def startup_event():
 #    """Runs ONCE when FastAPI starts"""
 #    await orc.start_background_agents()
-    
+
+@app.on_event("startup")
+def start_background_monitoring():
+    agent = MonitoringAgent()
+    threading.Thread(
+        target=agent.start,
+        daemon=True
+    ).start()
+
 @app.post("/query")
 async def handle_query(q: Query):
     return await orc.handle_request(q.message)

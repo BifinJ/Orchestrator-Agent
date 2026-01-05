@@ -1,5 +1,5 @@
 import json
-from utils import parse_timestamp
+from .utils import parse_timestamp
 
 
 def normalize_metric(raw):

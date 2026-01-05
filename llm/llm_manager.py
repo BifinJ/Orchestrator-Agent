@@ -3,7 +3,7 @@
 # import re
 # import google.generativeai as genai
 # from dotenv import load_dotenv
-# from utils.logger import logger
+# from data.logger import logger
 
 # load_dotenv()
 
@@ -87,7 +87,7 @@ import json
 import re
 import google.generativeai as genai
 from dotenv import load_dotenv
-from utils.logger import logger
+from data.logger import logger
 
 load_dotenv()
 

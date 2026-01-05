@@ -1,7 +1,7 @@
 import json
 from data.schemas import AgentMetadata
 from typing import List
-from utils.logger import logger
+from data.logger import logger
 
 class MetadataManager:
     def __init__(self, path: str = "data/agents_registry.json"):

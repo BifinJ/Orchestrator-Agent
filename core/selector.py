@@ -2,7 +2,7 @@
 from typing import List
 from data.schemas import AgentMetadata
 from llm.llm_manager import LLMManager
-from utils.logger import logger
+from data.logger import logger
 
 class Selector:
     def __init__(self, metadata_mgr):

@@ -1,8 +1,8 @@
 import math
 from datetime import datetime
 from collections import deque
-from config import TIME_WINDOW_MINUTES
-from dependency_graph import DEPENDENCY_GRAPH
+from .config import TIME_WINDOW_MINUTES
+from .dependency_graph import DEPENDENCY_GRAPH
 
 def parse_timestamp(ts):
     return datetime.fromisoformat(ts.replace("Z", "+00:00"))

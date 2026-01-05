@@ -1,5 +1,5 @@
-# from utils.logger import logger
-# from utils.async_utils import gather_with_timeout
+# from data.logger import logger
+# from data.async_utils import gather_with_timeout
 # from core.fuser import Fuser
 # from core.selector import Selector
 # import asyncio
@@ -108,8 +108,8 @@
 #         }
 
 
-from utils.logger import logger
-from utils.async_utils import gather_with_timeout
+from data.logger import logger
+from data.async_utils import gather_with_timeout
 from core.fuser import Fuser
 from core.selector import Selector
 import asyncio
@@ -157,12 +157,13 @@ class Orchestrator:
     # Background agents
     # -------------------------
     def _start_background_agents(self):
-        for meta in self.metadata_manager.list_all():
-            if meta.name == "monitoring_agent":
-                agent = self._agents.get(meta.name)
-                if agent:
-                    logger.info("Starting MonitoringAgent in background")
-                    asyncio.create_task(agent.run_forever())
+        pass
+        # # for meta in self.metadata_manager.list_all():
+        # #     if meta.name == "monitoring_agent":
+        # #         agent = self._agents.get(meta.name)
+        # #         if agent:
+        # logger.info("Starting MonitoringAgent in background")
+        # asyncio.create_task(monitoring_agent.run_forever())
 
     # -------------------------
     # Agent getter (NO re-init)

@@ -1,9 +1,9 @@
 from datetime import timedelta
-from config import TIME_WINDOW_MINUTES, WEIGHTS
-from dependency_graph import DEPENDENCY_GRAPH
-from utils import dependency_score, dependency_distance, temporal_decay
-from learning.action_mapping import ROOT_CAUSE_ACTIONS, ACTION_RISK
-from learning.action_store import get_action_stats
+from .config import TIME_WINDOW_MINUTES, WEIGHTS
+from .dependency_graph import DEPENDENCY_GRAPH
+from .utils import dependency_score, dependency_distance, temporal_decay
+from .learning.action_mapping import ROOT_CAUSE_ACTIONS, ACTION_RISK
+from .learning.action_store import get_action_stats
 
 
 class DiagnosisEngine:
@@ -12,7 +12,7 @@ class DiagnosisEngine:
         self.logs = logs
 
     def update_weights(new_weights):
-        from config import WEIGHTS
+        from .config import WEIGHTS
         for k in new_weights:
             if k in WEIGHTS:
                 WEIGHTS[k] = min(max(new_weights[k], 0.1), 0.6)

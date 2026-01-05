@@ -1,5 +1,5 @@
-from utils import parse_timestamp
-from diagnosis_engine import DiagnosisEngine
+from .utils import parse_timestamp
+from .diagnosis_engine import DiagnosisEngine
 
 class DiagnosticAgent:
     def __init__(self, metrics, logs):

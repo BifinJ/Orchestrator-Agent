@@ -43,5 +43,47 @@
     "type": "log_error",
     "timestamp": "2025-12-31T05:21:41+00:00",
     "message": "2025-12-31 05:21:41,337 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:17+00:00",
+    "message": "2026-01-05 15:57:17,384 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:38+00:00",
+    "message": "2026-01-05 15:57:38,049 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:41+00:00",
+    "message": "2026-01-05 15:57:41,411 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:42+00:00",
+    "message": "2026-01-05 15:57:42,187 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:44+00:00",
+    "message": "2026-01-05 15:57:44,218 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:45+00:00",
+    "message": "2026-01-05 15:57:45,184 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "log_error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T15:57:46+00:00",
+    "message": "2026-01-05 15:57:46,061 [ERROR] Random failure occurred"
   }
 ]
