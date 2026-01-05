@@ -1,7 +1,8 @@
 DEPENDENCY_GRAPH = {
-    "api": ["auth", "db"],
+    "api": ["auth", "cache", "db"],
     "auth": ["db"],
-    "db": ["cache", "storage"],
+    "db": ["storage"],
     "cache": ["storage"],
-    "storage": []
+    "storage": [],
+    "ec2": ["api", "db", "cache"]
 }

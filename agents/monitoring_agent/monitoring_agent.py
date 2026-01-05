@@ -11,6 +11,8 @@ from agents.monitoring_agent.detection_helper import classify_log, detect_http_s
 from agents.remediation_agent.remediation_agent import remediation_agent
 from agents.diagnosis_agent.diagnostic_agent import DiagnosticAgent
 
+from agents.diagnosis_agent.data_loader import load_metrics, load_logs
+
 
 LOG_GROUP = os.getenv("LOG_GROUP")
 INSTANCE_ID = os.getenv("INSTANCE_ID")
@@ -19,9 +21,12 @@ STATUS_ALERT_THRESHOLD = 4
 STATUS_WINDOW_SECONDS = 120
 ZSCORE_THRESHOLD = 2.5
 
+metrics_l = load_metrics("metrics/metrics_history.log")
+logs_l = load_logs("logs/monitor_logs.log")
+
 diagnostic_agent = DiagnosticAgent(
-    metrics="metrics/metric_history.log",
-    logs="logs/monitor_logs.log"
+    metrics=metrics_l,
+    logs=logs_l 
 )
 
 

@@ -76,5 +76,23 @@
     "service": "ec2",
     "timestamp": "2026-01-05T17:53:54+00:00",
     "message": "2026-01-05 17:53:54,058 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T17:59:50+00:00",
+    "message": "2026-01-05 17:59:50,906 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T17:59:53+00:00",
+    "message": "2026-01-05 17:59:53,290 [ERROR] Random failure occurred"
+  },
+  {
+    "type": "error",
+    "service": "ec2",
+    "timestamp": "2026-01-05T17:59:55+00:00",
+    "message": "2026-01-05 17:59:55,175 [ERROR] Random failure occurred"
   }
 ]
