@@ -1,1370 +1,255 @@
 [
   {
     "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.716294701122422,
-    "zscore": -5.58056551161965,
-    "timestamp": "2025-12-30T19:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1106.8,
-    "zscore": -3.126391746971649,
-    "timestamp": "2025-12-30T19:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 14.0,
-    "zscore": -3.878358759406699,
-    "timestamp": "2025-12-30T19:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 585.6,
-    "zscore": -6.01338698115689,
-    "timestamp": "2025-12-30T19:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 592.0,
-    "zscore": -11.480952381214342,
-    "timestamp": "2025-12-30T19:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 8.0,
-    "zscore": -13.0,
-    "timestamp": "2025-12-30T19:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 370.0,
-    "zscore": -16.660032490381063,
-    "timestamp": "2025-12-30T19:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
+    "service": "ec2",
     "metric": "NetworkPacketsIn",
     "namespace": "AWS/EC2",
-    "value": 5.0,
-    "zscore": -18.249999999999982,
-    "timestamp": "2025-12-30T19:10:00+00:00"
+    "value": 20.4,
+    "zscore": 101.24557603503797,
+    "timestamp": "2026-01-05T22:50:00+00:00"
   },
   {
     "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
+    "service": "ec2",
+    "metric": "NetworkIn",
     "namespace": "AWS/EC2",
-    "value": 2.0,
-    "zscore": -10.104145188980613,
-    "timestamp": "2025-12-30T19:10:00+00:00"
+    "value": 4150.0,
+    "zscore": 357.6626159272953,
+    "timestamp": "2026-01-05T22:50:00+00:00"
   },
   {
     "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 12288.0,
-    "zscore": -9.63189186992707,
-    "timestamp": "2025-12-30T19:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.633333333333333,
-    "zscore": -24.825950404116323,
-    "timestamp": "2025-12-30T19:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
+    "service": "ec2",
     "metric": "NetworkOut",
     "namespace": "AWS/EC2",
-    "value": 5728.0,
-    "zscore": 38.43342551204913,
-    "timestamp": "2025-12-30T19:15:00+00:00"
+    "value": 6482.0,
+    "zscore": 261.1772122793924,
+    "timestamp": "2026-01-05T22:55:00+00:00"
   },
   {
     "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 23.0,
-    "zscore": 7.3755933722895115,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 6494.5,
-    "zscore": 168.8927318915714,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 20.5,
-    "zscore": 31.592513961948967,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.72780096579174,
-    "zscore": 24.454566641201716,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 18.5,
-    "zscore": -4.286607049870554,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 15.0,
-    "zscore": -3.956868046034358,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 39.75,
-    "zscore": -6.865017305431801,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 231424.0,
-    "zscore": -24.954176754603687,
-    "timestamp": "2025-12-30T19:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1718.0,
-    "zscore": -3.4580211022595755,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 830.0,
-    "zscore": -4.579314534745396,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 9.0,
-    "zscore": -6.492004283320452,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 57344.0,
-    "zscore": -6.378374280712633,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -7.348469228349883,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.801440432129639,
-    "zscore": 12.061884227780592,
-    "timestamp": "2025-12-30T19:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 8356.333333333334,
-    "zscore": 108.81887765523729,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 8392.666666666666,
-    "zscore": 42.02831098598285,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 39.666666666666664,
-    "zscore": 4.626813958590446,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 6507.0,
-    "zscore": -4.6907599951374985,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 145408.0,
-    "zscore": -2.809392840955269,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 5284.6,
-    "zscore": -2.5783489835755518,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 28.6,
-    "zscore": -3.251420733360882,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 5205.6,
-    "zscore": -2.7053369320541107,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 26.2,
-    "zscore": -3.1764666993559425,
-    "timestamp": "2025-12-31T05:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 740.0,
-    "zscore": -5.297921967407792,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 10.0,
-    "zscore": -5.514432723787032,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 370.0,
-    "zscore": -5.383754034167481,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 5.0,
-    "zscore": -5.773068220301979,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
+    "service": "ec2",
     "metric": "EBSWriteOps",
     "namespace": "AWS/EC2",
     "value": 61.0,
-    "zscore": 5.295887545739556,
-    "timestamp": "2025-12-31T05:05:00+00:00"
+    "zscore": 5.838509797866754,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 339968.0,
-    "zscore": 4.709676720046792,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.348333138963397,
-    "zscore": 2.7720663650426527,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.37501022621678,
-    "zscore": 4.290051795418818,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.427205557960669,
-    "zscore": 4.1069950669934885,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 9733.25,
-    "zscore": 80.89670959479443,
-    "timestamp": "2025-12-31T05:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 35.666666666666664,
-    "zscore": -8.845379626717035,
-    "timestamp": "2025-12-31T05:10:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 5146.0,
-    "zscore": -3.274148372868256,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 22.0,
-    "zscore": -3.77375026188318,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 4364.0,
-    "zscore": -4.1223503869647375,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 26.0,
-    "zscore": -3.76198891960158,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 121.0,
-    "zscore": 8.103720741429367,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSReadOps",
-    "namespace": "AWS/EC2",
-    "value": 0.0,
-    "zscore": -3.833333333333333,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 577536.0,
-    "zscore": 9.21106998143577,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
+    "service": "ec2",
     "metric": "EBSReadBytes",
     "namespace": "AWS/EC2",
     "value": 0.0,
-    "zscore": -3.833333333333333,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.466666666666666,
-    "zscore": 4.027932554810403,
-    "timestamp": "2025-12-31T05:15:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 38.0,
-    "zscore": -3.1424230090245535,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 221184.0,
-    "zscore": -2.8571937855168126,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 8980.25,
-    "zscore": -16.00701391339253,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 44.5,
-    "zscore": -109.4105418443169,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 9599.5,
-    "zscore": -164.4997159753927,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 47.75,
-    "zscore": -48.785670710431646,
-    "timestamp": "2025-12-31T05:20:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 36.0,
-    "zscore": -2.7744220556013546,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 57.0,
-    "zscore": 13.991782318625129,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 311296.0,
-    "zscore": 17.101067278319597,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 4582.0,
-    "zscore": -4.159106548219073,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 4467.0,
-    "zscore": -5.161894275459179,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 25.5,
-    "zscore": -2.640584687255625,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.349927501208312,
-    "zscore": -8.569797443865397,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.5,
-    "zscore": 3.2659863237109503,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 26.333333333333332,
-    "zscore": -3.5683924647952487,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 18.0,
-    "zscore": -2.6827744801911,
-    "timestamp": "2025-12-31T05:25:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1258.0,
-    "zscore": -5.606062615270246,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 17.0,
-    "zscore": -3.7452343168641344,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 592.0,
-    "zscore": -6.524412493894699,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 8.0,
-    "zscore": -5.579393303006128,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 5.0,
-    "zscore": -3.5401835786392093,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 36864.0,
-    "zscore": -3.3258810381970276,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSIOBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -3.651483716701055,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -3.651483716701055,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 10.5,
-    "zscore": -3.6371211332235074,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.234886124912468,
-    "zscore": -16.322886948331167,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 33.0,
-    "zscore": 2.5232603974837198,
-    "timestamp": "2025-12-31T05:30:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1536.0,
-    "zscore": 151.58287158413103,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 24.0,
-    "zscore": 194.92253243479553,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 1554.0,
-    "zscore": 158.24654018232087,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 21.0,
-    "zscore": 158.2465401823205,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 60.0,
-    "zscore": 14.177349723381425,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 315392.0,
-    "zscore": 14.756682108962076,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.316666666666666,
-    "zscore": 2.7579719554241544,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.33336958393751,
-    "zscore": 2.684432609485235,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSIOBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.33333333333333,
-    "zscore": 2.8333333333333144,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.33333333333333,
-    "zscore": 2.8333333333333144,
-    "timestamp": "2025-12-31T05:35:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1702.0,
-    "zscore": 10.394529337485142,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 23.0,
-    "zscore": 5.993083896594544,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 666.0,
-    "zscore": -3.789618353901803,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 9.0,
-    "zscore": -3.681908691548885,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 5.0,
-    "zscore": -6.525053184871573,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 36864.0,
-    "zscore": -6.240366725661907,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSIOBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -6.94022093788602,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -6.94022093788602,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.398387258005397,
-    "zscore": 8.94640360475813,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 34.0,
-    "zscore": 3.0804189189546025,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 184320.0,
-    "zscore": 3.516203017866175,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 623.6,
-    "zscore": 4.503298798907514,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 8.4,
-    "zscore": 8.033264176742437,
-    "timestamp": "2025-12-31T05:40:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 11429.0,
-    "zscore": 193.9242140680286,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 41.0,
-    "zscore": 38.66183320285744,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 13239.0,
-    "zscore": 818.2494458775617,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 45.0,
-    "zscore": 133.08716011341764,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 71.0,
-    "zscore": 8.158783929504038,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 397312.0,
-    "zscore": 8.607068760795467,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 141312.0,
-    "zscore": -2.6802387765236224,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 2752.2,
-    "zscore": -2.6812617195411796,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 14.6,
-    "zscore": -3.429285639896448,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 2969.4,
-    "zscore": -2.585094022700852,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 13.4,
-    "zscore": -2.970657773162577,
-    "timestamp": "2025-12-31T05:45:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 962.0,
-    "zscore": -4.443598885841151,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 518.0,
-    "zscore": -4.8489855467209875,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 7.0,
-    "zscore": -3.8679110425192116,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 7.0,
-    "zscore": -5.972351395325276,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 45056.0,
-    "zscore": -5.793237645630056,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.2651027956415986,
-    "zscore": -8.666079464950155,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 19.25,
-    "zscore": -2.605584677372303,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 101376.0,
-    "zscore": -2.5701085558747745,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1334.4,
-    "zscore": 5.9887131112927365,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 18.0,
-    "zscore": 6.940220937885674,
-    "timestamp": "2025-12-31T05:50:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 830.0,
-    "zscore": -4.8484720784972675,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 11.0,
-    "zscore": -4.963879190548204,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 460.0,
-    "zscore": -3.2452279042785137,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 6.0,
-    "zscore": -3.678735778323031,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 61.0,
-    "zscore": 14.004691355477735,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 323584.0,
-    "zscore": 14.457620493323702,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 6.333333333333333,
-    "zscore": 2.5855725062711303,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.309121955828248,
-    "zscore": 5.116336037218806,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.344430575819122,
-    "zscore": 10.777585303997496,
-    "timestamp": "2025-12-31T05:55:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 5.0,
-    "zscore": -6.903107456934413,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 36864.0,
-    "zscore": -6.283473688009021,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSIOBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -7.348469228349883,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSByteBalance%",
-    "namespace": "AWS/EC2",
-    "value": 99.0,
-    "zscore": -7.348469228349883,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1256.0,
-    "zscore": 14.24951823605167,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 17.0,
-    "zscore": 17.428425057933374,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 748.0,
-    "zscore": 10.118554971448107,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 10.0,
-    "zscore": 12.264447262990153,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.251558904931808,
-    "zscore": -6.334744428374506,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 33.0,
-    "zscore": 3.666229745734299,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 167936.0,
-    "zscore": 3.7673438734033677,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 1057.5,
-    "zscore": -5.095952784946213,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 14.25,
-    "zscore": -5.434805366800176,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 507.5,
-    "zscore": -5.657291146591517,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 6.75,
-    "zscore": -5.409289848646186,
-    "timestamp": "2025-12-31T06:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 5085.0,
-    "zscore": 33.62600889493194,
-    "timestamp": "2025-12-31T06:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 37.0,
-    "zscore": 13.716216524815945,
-    "timestamp": "2025-12-31T06:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkIn",
-    "namespace": "AWS/EC2",
-    "value": 4136.0,
-    "zscore": 54.31371991208105,
-    "timestamp": "2025-12-31T06:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 28.0,
-    "zscore": 23.470474840342863,
-    "timestamp": "2025-12-31T06:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "NetworkPacketsIn",
-    "namespace": "AWS/EC2",
-    "value": 61.0,
-    "zscore": 8.475558216368427,
-    "timestamp": "2026-01-05T15:55:00+00:00"
+    "zscore": -8.981462390204987,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
     "metric": "CPUUtilization",
     "namespace": "AWS/EC2",
-    "value": 4.761159651275277,
-    "zscore": 4.148693131856769,
-    "timestamp": "2026-01-05T15:55:00+00:00"
+    "value": 4.666744445740762,
+    "zscore": 4.631029301595495,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
-    "metric": "NetworkIn",
+    "metric": "EBSWriteBytes",
     "namespace": "AWS/EC2",
-    "value": 11414.75,
-    "zscore": 4.8925676343938225,
-    "timestamp": "2026-01-05T15:55:00+00:00"
+    "value": 186368.0,
+    "zscore": -3.8103173776627215,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 8.0,
-    "zscore": -4.400994983439579,
-    "timestamp": "2026-01-05T16:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "NetworkOut",
-    "namespace": "AWS/EC2",
-    "value": 608.0,
-    "zscore": -2.51305850474931,
-    "timestamp": "2026-01-05T16:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.598390563302844,
-    "zscore": -3.1434722594699145,
-    "timestamp": "2026-01-05T16:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "CPUUtilization",
-    "namespace": "AWS/EC2",
-    "value": 4.632785567516232,
-    "zscore": 42.383018950034035,
-    "timestamp": "2026-01-05T16:00:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "NetworkPacketsIn",
+    "metric": "EBSReadOps",
     "namespace": "AWS/EC2",
     "value": 0.0,
-    "zscore": -3.1727238251364134,
-    "timestamp": "2026-01-05T16:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "EBSWriteBytes",
-    "namespace": "AWS/EC2",
-    "value": 165888.0,
-    "zscore": -3.073597701382855,
-    "timestamp": "2026-01-05T16:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "EBSWriteOps",
-    "namespace": "AWS/EC2",
-    "value": 30.5,
-    "zscore": -3.364621635956895,
-    "timestamp": "2026-01-05T16:05:00+00:00"
-  },
-  {
-    "type": "metric_anomaly",
-    "service": "ec2",
-    "metric": "NetworkPacketsOut",
-    "namespace": "AWS/EC2",
-    "value": 7.0,
-    "zscore": 4.25,
-    "timestamp": "2026-01-05T16:05:00+00:00"
+    "zscore": -8.981462390204987,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
     "metric": "CPUUtilization",
     "namespace": "AWS/EC2",
-    "value": 4.639427688579892,
-    "zscore": 4.510871504399727,
-    "timestamp": "2026-01-05T16:05:00+00:00"
+    "value": 4.617205727032331,
+    "zscore": -2.9715961816104253,
+    "timestamp": "2026-01-05T23:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsIn",
+    "namespace": "AWS/EC2",
+    "value": 25.666666666666668,
+    "zscore": 15.64951780111475,
+    "timestamp": "2026-01-05T23:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsIn",
+    "namespace": "AWS/EC2",
+    "value": 35.0,
+    "zscore": 3.169804273520412,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
     "metric": "NetworkIn",
     "namespace": "AWS/EC2",
-    "value": 279.0,
-    "zscore": 3.3287147275833204,
-    "timestamp": "2026-01-05T16:05:00+00:00"
+    "value": 8202.25,
+    "zscore": 89.17399699427395,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
     "metric": "EBSWriteBytes",
     "namespace": "AWS/EC2",
-    "value": 92160.0,
-    "zscore": -2.8665623842427133,
-    "timestamp": "2026-01-05T16:05:00+00:00"
+    "value": 129024.0,
+    "zscore": -2.5484590253198727,
+    "timestamp": "2026-01-05T23:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 28.8,
+    "zscore": 3.3869487801446403,
+    "timestamp": "2026-01-05T23:05:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
     "metric": "NetworkOut",
     "namespace": "AWS/EC2",
-    "value": 571.0,
-    "zscore": 6.530491422582383,
-    "timestamp": "2026-01-05T16:05:00+00:00"
+    "value": 5819.2,
+    "zscore": 2.791466024089679,
+    "timestamp": "2026-01-05T23:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsIn",
+    "namespace": "AWS/EC2",
+    "value": 4.0,
+    "zscore": -10.493493095626704,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 282.0,
+    "zscore": -9.374922470179994,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "EBSWriteOps",
+    "namespace": "AWS/EC2",
+    "value": 5.0,
+    "zscore": -8.398250546685182,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "EBSWriteOps",
+    "namespace": "AWS/EC2",
+    "value": 33.5,
+    "zscore": 3.0456091827609213,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "EBSIOBalance%",
+    "namespace": "AWS/EC2",
+    "value": 99.0,
+    "zscore": -8.981462390205449,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "CPUUtilization",
+    "namespace": "AWS/EC2",
+    "value": 4.628309773515901,
+    "zscore": 6.100697524040329,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsIn",
+    "namespace": "AWS/EC2",
+    "value": 2.75,
+    "zscore": -6.8381588652697,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 204.0,
+    "zscore": -7.126966450997983,
+    "timestamp": "2026-01-05T23:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsIn",
+    "namespace": "AWS/EC2",
+    "value": 19.4,
+    "zscore": 53.94709552558192,
+    "timestamp": "2026-01-05T23:20:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 4056.0,
+    "zscore": 176.39466519503995,
+    "timestamp": "2026-01-05T23:20:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 20.4,
+    "zscore": 25.125826604003226,
+    "timestamp": "2026-01-05T23:20:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "NetworkOut",
+    "namespace": "AWS/EC2",
+    "value": 3570.4,
+    "zscore": 96.85940979716612,
+    "timestamp": "2026-01-05T23:20:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": "EBSIOBalance%",
+    "namespace": "AWS/EC2",
+    "value": 99.0,
+    "zscore": -9.389710680668964,
+    "timestamp": "2026-01-05T23:25:00+00:00"
   },
   {
     "type": "metric_anomaly",
@@ -1372,25 +257,25 @@
     "metric": "EBSWriteOps",
     "namespace": "AWS/EC2",
     "value": 68.0,
-    "zscore": 7.737557316938853,
-    "timestamp": "2026-01-05T16:10:00+00:00"
+    "zscore": 82.46615467370039,
+    "timestamp": "2026-01-05T23:25:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
-    "metric": "CPUUtilization",
+    "metric": "EBSWriteBytes",
     "namespace": "AWS/EC2",
-    "value": 4.643896302960631,
-    "zscore": 2.9954434112580133,
-    "timestamp": "2026-01-05T16:10:00+00:00"
+    "value": 352256.0,
+    "zscore": 1234.1345820722404,
+    "timestamp": "2026-01-05T23:25:00+00:00"
   },
   {
     "type": "metric_anomaly",
     "service": "ec2",
-    "metric": "NetworkPacketsOut",
+    "metric": "EBSByteBalance%",
     "namespace": "AWS/EC2",
-    "value": 7.666666666666667,
-    "zscore": 2.5143585112033624,
-    "timestamp": "2026-01-05T16:10:00+00:00"
+    "value": 99.0,
+    "zscore": -9.389710680668964,
+    "timestamp": "2026-01-05T23:25:00+00:00"
   }
 ]

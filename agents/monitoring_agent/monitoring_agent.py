@@ -20,8 +20,8 @@ STATUS_WINDOW_SECONDS = 120
 ZSCORE_THRESHOLD = 2.5
 
 diagnostic_agent = DiagnosticAgent(
-    metrics="storage/metrics.jsonl",
-    logs="storage/local_logs.txt"
+    metrics="metrics/metric_history.log",
+    logs="logs/monitor_logs.log"
 )
 
 
@@ -64,6 +64,9 @@ class MonitoringAgent(BaseAgent):
                         self.last_log_ts = max(self.last_log_ts, ev["timestamp"] + 1)
                         
                         msg = ev["message"]
+                        if not isinstance(msg, str):
+                            continue
+
                         ts_ms = ev["timestamp"]
                         ts_iso = datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc).isoformat()
 
@@ -79,16 +82,19 @@ class MonitoringAgent(BaseAgent):
     "timestamp": ts_iso,
     "message": msg
 }
+                            
 
+
+                            print(f"[ALERT] Detected :" , type(alert))
+                            diagnosis = diagnostic_agent.handle_anomaly(alert)
+                            print(f"[DIAGNOSIS] Results:", diagnosis)
                             append_json("storage/log_alerts.json", alert)
 
-                            diagnosis = diagnostic_agent.handle_anomaly(alert)
-
-                            if diagnosis:
-                                remediation_agent({
-                                    "alert": alert,
-                                    "diagnosis": diagnosis
-                                })
+                            # if diagnosis:
+                            #     remediation_agent({
+                            #         "alert": alert,
+                            #         "diagnosis": diagnosis
+                            #     })
 
 
                         # 4. DETECT HTTP status codes (e.g., 404, 500)
