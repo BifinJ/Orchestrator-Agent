@@ -9,6 +9,8 @@ from agents.monitoring_agent.metric_helper import rolling_zscore
 from agents.monitoring_agent.storage_helper import append_json, append_metric, save_local_log
 from agents.monitoring_agent.detection_helper import classify_log, detect_http_status
 from agents.remediation_agent.remediation_agent import remediation_agent
+from agents.diagnosis_agent.diagnostic_agent import DiagnosticAgent
+
 
 LOG_GROUP = os.getenv("LOG_GROUP")
 INSTANCE_ID = os.getenv("INSTANCE_ID")
@@ -16,6 +18,11 @@ INSTANCE_ID = os.getenv("INSTANCE_ID")
 STATUS_ALERT_THRESHOLD = 4
 STATUS_WINDOW_SECONDS = 120
 ZSCORE_THRESHOLD = 2.5
+
+diagnostic_agent = DiagnosticAgent(
+    metrics="storage/metrics.jsonl",
+    logs="storage/local_logs.txt"
+)
 
 
 class MonitoringAgent(BaseAgent):
@@ -67,12 +74,22 @@ class MonitoringAgent(BaseAgent):
                         category = classify_log(msg)
                         if category:
                             alert = {
-                                "type": category,
-                                "timestamp": ts_iso,
-                                "message": msg
-                            }
+    "type": category,
+    "service": "ec2",
+    "timestamp": ts_iso,
+    "message": msg
+}
+
                             append_json("storage/log_alerts.json", alert)
-                            remediation_agent(alert)
+
+                            diagnosis = diagnostic_agent.handle_anomaly(alert)
+
+                            if diagnosis:
+                                remediation_agent({
+                                    "alert": alert,
+                                    "diagnosis": diagnosis
+                                })
+
 
                         # 4. DETECT HTTP status codes (e.g., 404, 500)
                         status = detect_http_status(msg)
@@ -87,13 +104,20 @@ class MonitoringAgent(BaseAgent):
                             count = sum(1 for _, s in self.status_events if s == status)
                             if count >= STATUS_ALERT_THRESHOLD:
                                 alert = {
-                                    "type": "status_repeated",
-                                    "timestamp": ts_iso,
-                                    "status": status,
-                                    "count": count
-                                }
+    "type": "status_repeated",
+    "service": "ec2",
+    "timestamp": ts_iso,
+    "status": status,
+    "count": count
+}
+
                                 append_json("storage/log_alerts.json", alert)
-                                remediation_agent(alert)
+                                diagnosis = diagnostic_agent.handle_anomaly(alert)
+                                if diagnosis:
+                                    remediation_agent({
+                                        "alert": alert,
+                                        "diagnosis": diagnosis
+                                    })
 
                     next_token = resp.get("nextToken")
                     
@@ -158,15 +182,25 @@ class MonitoringAgent(BaseAgent):
 
                     if zs[-1] is not None and abs(zs[-1]) > ZSCORE_THRESHOLD:
                         alert = {
-                            "type": "metric_anomaly",
-                            "metric": metric_name,
-                            "namespace": namespace,
-                            "value": value,
-                            "zscore": float(zs[-1]),
-                            "timestamp": ts_iso
-                        }
+    "type": "metric_anomaly",
+    "service": "ec2",
+    "metric": metric_name,
+    "namespace": namespace,
+    "value": value,
+    "zscore": float(zs[-1]),
+    "timestamp": ts_iso
+}
+
                         append_json("storage/metric_alerts.json", alert)
-                        remediation_agent(alert)
+
+                        diagnosis = diagnostic_agent.handle_anomaly(alert)
+
+                        if diagnosis:
+                            remediation_agent({
+                                "alert": alert,
+                                "diagnosis": diagnosis
+                            })
+
 
             except Exception as e:
                 print("[ERR] metric polling:", e)
