@@ -21,7 +21,6 @@ class DiagnosisEngine:
         window_start = anomaly_time - timedelta(minutes=TIME_WINDOW_MINUTES)
         window_end = anomaly_time + timedelta(minutes=TIME_WINDOW_MINUTES)
 
-        # ---------------- SAFE METRIC FILTER ----------------
         relevant_metrics = [
             m for m in self.metrics
             if isinstance(m, dict)
@@ -29,7 +28,6 @@ class DiagnosisEngine:
             and window_start <= m["timestamp"] <= window_end
         ]
 
-        # ---------------- SAFE LOG FILTER (FIX) ----------------
         relevant_logs = [
             l for l in self.logs
             if isinstance(l, dict)

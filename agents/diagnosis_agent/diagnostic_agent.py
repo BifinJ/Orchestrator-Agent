@@ -3,6 +3,8 @@ from .diagnosis_engine import DiagnosisEngine
 
 class DiagnosticAgent:
     def __init__(self, metrics, logs):
+        print("[DIAG] Initializing Diagnostic Agent...")
+        print(f"[DIAG] Loaded {len(metrics)} metrics and {len(logs)} logs for analysis.")
         self.engine = DiagnosisEngine(metrics, logs)
 
     def handle_anomaly(self, anomaly_event):

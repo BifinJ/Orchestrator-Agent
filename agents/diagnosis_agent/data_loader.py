@@ -1,52 +1,129 @@
 import json
+from datetime import datetime
 from .utils import parse_timestamp
 
-
-def normalize_metric(raw):
-    metric_name = raw["metric"]
-    value = raw["value"]
-
-    normalized = {
-        "timestamp": raw["timestamp"],
-        "service": "api",  
-        "CPU_Usage": None,
-        "Memory_Usage": None,
-        "Network_In": None,
-        "Network_Out": None
-    }
-
-    if metric_name == "CPUUtilization":
-        normalized["CPU_Usage"] = value
-    elif metric_name == "NetworkPacketsIn":
-        normalized["Network_In"] = value
-    elif metric_name == "NetworkPacketsOut":
-        normalized["Network_Out"] = value
-
-    return normalized
-
-
-def load_metrics(file_path):
-    metrics = []
-    with open(file_path) as f:
-        for line in f:
-            raw = json.loads(line)
-            raw["timestamp"] = parse_timestamp(raw["timestamp"])
-            metrics.append(normalize_metric(raw))
-    return metrics
-
+# --------------------------------------------------
+# LOG LOADER
+# --------------------------------------------------
 
 def load_logs(file_path):
+    """
+    Load and normalize application logs.
+
+    Expected log format:
+    2026-01-05T18:52:32+00:00 2026-01-05 18:52:32,187 [ERROR] Message
+    """
     logs = []
+
     with open(file_path) as f:
         for line in f:
+            line = line.strip()
+            if not line:
+                continue
+
             parts = line.split(" ")
-            timestamp = parse_timestamp(parts[0])
-            level = parts[3].strip("[]")  # [INFO], [ERROR]
+            if len(parts) < 5:
+                continue
+
+            try:
+                timestamp = parse_timestamp(parts[0])
+            except Exception:
+                continue
+
+            level_token = parts[3]
+            if level_token.startswith("[") and level_token.endswith("]"):
+                level = level_token.strip("[]")
+            else:
+                continue
+
             message = " ".join(parts[4:])
+
             logs.append({
                 "timestamp": timestamp,
                 "level": level,
-                "message": message.strip()
+                "message": message
             })
+
     return logs
 
+
+# --------------------------------------------------
+# METRIC NORMALIZATION
+# --------------------------------------------------
+
+def normalize_metric(raw):
+    """
+    Convert raw CloudWatch metric into a diagnostic signal.
+    Only emits metrics that indicate a potential problem.
+    """
+    name = raw.get("metric")
+    value = raw.get("value")
+    timestamp = raw.get("timestamp")
+
+    # ---- CPU PRESSURE ----
+    if name == "CPUUtilization" and value >= 80:
+        return {
+            "timestamp": timestamp,
+            "service": "api",
+            "signal": "HIGH_CPU"
+        }
+
+    # ---- INSTANCE HEALTH ----
+    if name == "StatusCheckFailed" and value == 1.0:
+        return {
+            "timestamp": timestamp,
+            "service": "api",
+            "signal": "INSTANCE_UNHEALTHY"
+        }
+
+    # ---- DISK PRESSURE ----
+    if name == "EBSByteBalance%" and value <= 20:
+        return {
+            "timestamp": timestamp,
+            "service": "db",
+            "signal": "LOW_EBS_BALANCE"
+        }
+
+    # ---- NETWORK PRESSURE ----
+    if name == "NetworkPacketsIn" and value >= 1000:
+        return {
+            "timestamp": timestamp,
+            "service": "api",
+            "signal": "HIGH_NETWORK_IN"
+        }
+
+    return None
+
+
+# --------------------------------------------------
+# METRIC LOADER
+# --------------------------------------------------
+
+def load_metrics(file_path):
+    """
+    Load and normalize CloudWatch metrics.
+    Only metrics producing diagnostic signals are returned.
+    """
+    metrics = []
+
+    with open(file_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+
+            try:
+                raw = json.loads(line)
+            except Exception:
+                continue
+
+            try:
+                raw["timestamp"] = parse_timestamp(raw["timestamp"])
+            except Exception:
+                continue
+
+            normalized = normalize_metric(raw)
+            if normalized:
+                metrics.append(normalized)
+
+    return metrics
