@@ -7,17 +7,15 @@ from agents.remediation_agent.policy import (
 
 
 def decide_action(diagnosis: dict) -> dict:
-    """
-    Decide which action to take and whether it can be automated.
-    """
-
-    confidence = diagnosis["confidence"]
+    confidence = diagnosis.get("confidence", 0.0)
     actions = diagnosis.get("recommended_actions", [])
 
     if not actions:
-        return {"approved": False}
+        return {
+            "approved": False,
+            "reason": "No remediation actions available"
+        }
 
-    # Prefer lowest-risk action
     actions = sorted(actions, key=lambda a: a["risk"])
     selected = actions[0]
 
@@ -28,7 +26,7 @@ def decide_action(diagnosis: dict) -> dict:
 
     return {
         "approved": approved,
-        "action": selected["action"],
-        "risk": selected["risk"],
+        "action": selected.get("action"),
+        "risk": selected.get("risk"),
         "confidence": confidence
     }
