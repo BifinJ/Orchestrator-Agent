@@ -2,9 +2,6 @@ import json
 from datetime import datetime
 from .utils import parse_timestamp
 
-# --------------------------------------------------
-# LOG LOADER
-# --------------------------------------------------
 
 def load_logs(file_path):
     """
@@ -26,8 +23,13 @@ def load_logs(file_path):
                 continue
 
             try:
-                timestamp = parse_timestamp(parts[0])
-            except Exception:
+                # Use the SECOND timestamp (the more precise one)
+                timestamp_str = parts[1] + " " + parts[2]
+                # Remove the comma from milliseconds
+                timestamp_str = timestamp_str.replace(",", ".")
+                timestamp = datetime.fromisoformat(timestamp_str)
+            except Exception as e:
+                print(f"[WARN] Failed to parse timestamp in log line: {line[:50]}... Error: {e}")
                 continue
 
             level_token = parts[3]
@@ -48,7 +50,7 @@ def load_logs(file_path):
 
 
 # --------------------------------------------------
-# METRIC NORMALIZATION
+# METRIC NORMALIZATION (UNCHANGED)
 # --------------------------------------------------
 
 def normalize_metric(raw):
@@ -94,10 +96,6 @@ def normalize_metric(raw):
 
     return None
 
-
-# --------------------------------------------------
-# METRIC LOADER
-# --------------------------------------------------
 
 def load_metrics(file_path):
     """
