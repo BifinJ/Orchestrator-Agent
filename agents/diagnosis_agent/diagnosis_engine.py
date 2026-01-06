@@ -77,7 +77,7 @@ class DiagnosisEngine:
                 "confidence": round(confidence, 2),
                 "evidence": {
                     "dependency_distance": dependency_distance(service_lower, service),
-                    "metrics_seen": len([m for m in relevant_metrics if m.get("service") == service]),
+                    # "metrics_seen": len([m for m in relevant_metrics if m.get("service") == service]),
                     "error_logs_seen": len(relevant_logs)
                 },
                 "recommended_actions": self.recommend_actions(service.upper())
