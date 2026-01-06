@@ -83,7 +83,7 @@ class MonitoringAgent(BaseAgent):
                         if category:
                             alert = {
     "type": category,
-    "service": "ec2",
+    "service": "api",
     "timestamp": ts_iso,
     "message": msg
 }

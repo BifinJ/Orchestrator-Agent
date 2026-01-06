@@ -28,6 +28,10 @@ def load_logs(file_path):
                 # Remove the comma from milliseconds
                 timestamp_str = timestamp_str.replace(",", ".")
                 timestamp = datetime.fromisoformat(timestamp_str)
+                # Make timezone-aware if naive
+                if timestamp.tzinfo is None:
+                    from datetime import timezone
+                    timestamp = timestamp.replace(tzinfo=timezone.utc)
             except Exception as e:
                 print(f"[WARN] Failed to parse timestamp in log line: {line[:50]}... Error: {e}")
                 continue

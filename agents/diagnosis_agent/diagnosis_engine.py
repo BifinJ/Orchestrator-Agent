@@ -1,4 +1,3 @@
-
 from datetime import timedelta
 from .config import TIME_WINDOW_MINUTES, WEIGHTS
 from .dependency_graph import DEPENDENCY_GRAPH
@@ -19,6 +18,11 @@ class DiagnosisEngine:
                 WEIGHTS[k] = min(max(new_weights[k], 0.1), 0.6)
 
     def analyze(self, anomaly_time, affected_service):
+        # Ensure anomaly_time is timezone-aware
+        from datetime import timezone
+        if anomaly_time.tzinfo is None:
+            anomaly_time = anomaly_time.replace(tzinfo=timezone.utc)
+        
         window_start = anomaly_time - timedelta(minutes=TIME_WINDOW_MINUTES)
         window_end = anomaly_time + timedelta(minutes=TIME_WINDOW_MINUTES)
 

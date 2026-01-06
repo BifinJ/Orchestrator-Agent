@@ -4,8 +4,25 @@ from collections import deque
 from .config import TIME_WINDOW_MINUTES
 from .dependency_graph import DEPENDENCY_GRAPH
 
-def parse_timestamp(ts):
-    return datetime.fromisoformat(ts.replace("Z", "+00:00"))
+# In your utils.py file
+from datetime import datetime, timezone
+
+def parse_timestamp(timestamp_str):
+    """
+    Parse timestamp string and ensure it's timezone-aware (UTC).
+    Handles both ISO format with timezone and without.
+    """
+    try:
+        # Try parsing with timezone info first
+        dt = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+        
+        # If naive, assume UTC
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        
+        return dt
+    except Exception as e:
+        raise ValueError(f"Cannot parse timestamp: {timestamp_str}") from e
 
 def temporal_decay(event_time, anomaly_time):
     delta = abs((anomaly_time - event_time).total_seconds())
