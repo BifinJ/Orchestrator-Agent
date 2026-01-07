@@ -160,5 +160,86 @@
     "value": 20.75,
     "zscore": -2.8702354298938935,
     "timestamp": "2026-01-07T10:55:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 6964.5,
+    "zscore": -6.210625245195557,
+    "timestamp": "2026-01-07T12:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkOut",
+    "namespace": "AWS/EC2",
+    "value": 7312.5,
+    "zscore": -3.977567762648394,
+    "timestamp": "2026-01-07T12:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 25.75,
+    "zscore": -7.386742505580531,
+    "timestamp": "2026-01-07T12:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkOut",
+    "namespace": "AWS/EC2",
+    "value": 6059.2,
+    "zscore": -2.735563745433029,
+    "timestamp": "2026-01-07T12:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 23.0,
+    "zscore": -2.64223784446915,
+    "timestamp": "2026-01-07T12:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 74.0,
+    "zscore": -11.169165308468305,
+    "timestamp": "2026-01-07T12:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkOut",
+    "namespace": "AWS/EC2",
+    "value": 444.0,
+    "zscore": -5.204529752079279,
+    "timestamp": "2026-01-07T12:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 6.0,
+    "zscore": -4.913763590278673,
+    "timestamp": "2026-01-07T12:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "api",
+    "metric": "CPUUtilization",
+    "namespace": "AWS/EC2",
+    "value": 4.5333706950671395,
+    "zscore": -7.334741650789732,
+    "timestamp": "2026-01-07T12:05:00+00:00"
   }
 ]
