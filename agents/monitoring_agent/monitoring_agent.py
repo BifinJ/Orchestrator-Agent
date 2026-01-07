@@ -116,7 +116,7 @@ class MonitoringAgent(BaseAgent):
                             if count >= STATUS_ALERT_THRESHOLD:
                                 alert = {
     "type": "status_repeated",
-    "service": "ec2",
+    "service": "api",
     "timestamp": ts_iso,
     "status": status,
     "count": count
@@ -194,7 +194,7 @@ class MonitoringAgent(BaseAgent):
                     if zs[-1] is not None and abs(zs[-1]) > ZSCORE_THRESHOLD:
                         alert = {
     "type": "metric_anomaly",
-    "service": "ec2",
+    "service": "api",
     "metric": metric_name,
     "namespace": namespace,
     "value": value,
