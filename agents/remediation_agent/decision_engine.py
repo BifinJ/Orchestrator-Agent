@@ -1,8 +1,6 @@
-# agents/remediation_agent/decision_engine.py
-
 from agents.remediation_agent.policy import (
-    AUTO_APPROVE_RISK,
-    CONFIDENCE_THRESHOLD
+    CONFIDENCE_THRESHOLD,
+    AUTO_APPROVE_RISK
 )
 
 
@@ -13,9 +11,13 @@ def decide_action(diagnosis: dict) -> dict:
     if not actions:
         return {
             "approved": False,
-            "reason": "No remediation actions available"
+            "reason": "No actions available",
+            "action": None,
+            "risk": None,
+            "confidence": confidence
         }
 
+    # pick lowest-risk action
     actions = sorted(actions, key=lambda a: a["risk"])
     selected = actions[0]
 
@@ -26,7 +28,7 @@ def decide_action(diagnosis: dict) -> dict:
 
     return {
         "approved": approved,
-        "action": selected.get("action"),
-        "risk": selected.get("risk"),
+        "action": selected["action"],
+        "risk": selected["risk"],
         "confidence": confidence
     }

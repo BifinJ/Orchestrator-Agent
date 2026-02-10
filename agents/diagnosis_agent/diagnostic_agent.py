@@ -2,6 +2,9 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+import logging
+import json
+from pathlib import Path
 from agents.diagnosis_agent.dependency_graph import (
     dependency_graph,
     get_root_cause_candidates,
@@ -63,7 +66,32 @@ class DiagnosticAgent:
         
         # Sort by confidence
         diagnoses = sorted(diagnoses, key=lambda d: d.get("confidence", 0), reverse=True)
-        
+        # #logging for future analysis
+        # log_file = Path("./storage/diagnosis.log")
+        # logger = logging.getLogger("diagnosis")
+        # logger.setLevel(logging.DEBUG)
+        # logger.propagate = False  # 🔹 prevent Uvicorn from writing to the same handler
+
+        # # File handler in append mode
+        # file_handler = logging.FileHandler(log_file, mode="a")  # append mode
+        # formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        # file_handler.setFormatter(formatter)
+        # logger.addHandler(file_handler)
+
+        # # Optional: console logs
+        # console_handler = logging.StreamHandler()
+        # console_handler.setFormatter(formatter)
+        # logger.addHandler(console_handler)
+
+        # # Logging example
+        # if not diagnoses:
+        #     logger.info("No dependency issues found for service '%s'", service)
+        # else:
+        #     logger.info(
+        #         "Dependency diagnoses for service '%s': %s",
+        #         service,
+        #         diagnoses
+        #     )
         return diagnoses
     
     def _analyze_direct_service(self, alert: Dict) -> Optional[Dict]:
@@ -152,8 +180,8 @@ class DiagnosticAgent:
                     ),
                     "impact_analysis": analyze_impact(dep_service)
                 })
-        
-        return diagnoses
+
+            return diagnoses
     
     def _detect_cascading_failures(self, alert: Dict) -> Optional[Dict]:
         """

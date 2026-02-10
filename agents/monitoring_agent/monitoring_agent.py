@@ -42,7 +42,7 @@ class MonitoringAgent(BaseAgent):
         self.status_events = []
         self.metric_history = {}
 
-    # ---------------- LOGS ----------------
+#    ---------------- LOGS ----------------
     def poll_logs(self):
         print(f"[LOG] Monitoring {LOG_GROUP} and saving to local storage...")
         
@@ -86,7 +86,7 @@ class MonitoringAgent(BaseAgent):
     "service": "api",
     "timestamp": ts_iso,
     "message": msg
-}
+    }
                             
 
 
@@ -95,11 +95,12 @@ class MonitoringAgent(BaseAgent):
                             print(f"[DIAGNOSIS] Results:", diagnosis)
                             append_json("storage/log_alerts.json", alert)
 
-                            # if diagnosis:
-                            #     remediation_agent({
-                            #         "alert": alert,
-                            #         "diagnosis": diagnosis
-                            #     })
+                            if diagnosis:
+                                remediation_agent({
+                                     "alert": alert,
+                                     "diagnosis": diagnosis,
+                                     "service": "mainproject",
+                                 })
 
 
                         # 4. DETECT HTTP status codes (e.g., 404, 500)
@@ -120,15 +121,19 @@ class MonitoringAgent(BaseAgent):
     "timestamp": ts_iso,
     "status": status,
     "count": count
-}
+    }
 
                                 append_json("storage/log_alerts.json", alert)
                                 diagnosis = diagnostic_agent.handle_anomaly(alert)
+                                print("Diagnosis sending to remediation agent.")
+
                                 if diagnosis:
                                     remediation_agent({
                                         "alert": alert,
-                                        "diagnosis": diagnosis
+                                        "diagnosis": diagnosis,
+                                        "service": "mainproject",
                                     })
+                                print("Diagnosis sent to remediation agent.")
 
                     next_token = resp.get("nextToken")
                     
@@ -209,7 +214,8 @@ class MonitoringAgent(BaseAgent):
                         if diagnosis:
                             remediation_agent({
                                 "alert": alert,
-                                "diagnosis": diagnosis
+                                "diagnosis": diagnosis,
+                                "service": "api",
                             })
 
 
@@ -217,26 +223,82 @@ class MonitoringAgent(BaseAgent):
                 print("[ERR] metric polling:", e)
 
             time.sleep(20)
+    
+    # def poll_logs_from_file(self, file_path="logs/test_logs.log"):
+    #     print("[LOG] Reading predefined logs from file for testing...")
 
-    async def run(self, message: str = "", context: dict = None):
-        """
-        Entry point for orchestrator / agent runtime.
-        Monitoring agents usually ignore message content.
-        """
-        if context is None:
-            context = {}
+    #     with open(file_path, "r") as f:
+    #         for line in f:
+    #             msg = line.strip()
+    #             if not msg:
+    #                 continue
 
-        # Start background monitoring only once
-        if not context.get("monitoring_started"):
-            context["monitoring_started"] = True
-            self.start()
+    #             ts_iso = datetime.now(timezone.utc).isoformat()
 
-        return "Monitoring agent running"
+    #             # Save locally (same as AWS flow)
+    #             save_local_log(f"{ts_iso} {msg}")
+
+    #             # 1. Keyword-based detection
+    #             category = classify_log(msg)
+    #             if category:
+    #                 alert = {
+    #                     "type": category,
+    #                     "service": "api",
+    #                     "timestamp": ts_iso,
+    #                     "message": msg
+    #                 }
+
+    #                 print("[ALERT]", alert)
+
+    #                 diagnoses = diagnostic_agent.handle_anomaly(alert)
+    #                 print("[DIAGNOSIS]", diagnoses)
+    #                 if diagnoses:
+    #                     remediation_agent({
+    #                         "alert": alert,
+    #                         "diagnosis": diagnoses
+    #                     })
+    #                     print("Diagnosis sent to remediation agent.")
+    #             # 2. HTTP status detection
+    #             status = detect_http_status(msg)
+    #             if status:
+    #                 alert = {
+    #                     "type": "status_repeated",
+    #                     "service": "api",
+    #                     "timestamp": ts_iso,
+    #                     "status": status,
+    #                     "count": 1
+    #                 }
+
+    #                 diagnoses = diagnostic_agent.handle_anomaly(alert)
+    #                 print("[DIAGNOSIS]", diagnoses)
+    #                 if diagnoses:
+    #                     remediation_agent({
+    #                         "alert": alert,
+    #                         "diagnosis": diagnoses
+    #                     })
+    #                     print("Diagnosis sent to remediation agent.")
+    #             time.sleep(2)  # simulate real-time logs
+
+    # async def run(self, message: str = "", context: dict = None):
+    #     """
+    #     Entry point for orchestrator / agent runtime.
+    #     Monitoring agents usually ignore message content.
+    #     """
+    #     if context is None:
+    #         context = {}
+
+    #     # Start background monitoring only once
+    #     if not context.get("monitoring_started"):
+    #         context["monitoring_started"] = True
+    #         self.start()
+
+    #     return "Monitoring agent running"
 
 
     # ---------------- START ----------------
     def start(self):
         threading.Thread(target=self.poll_logs, daemon=True).start()
-        threading.Thread(target=self.poll_metrics, daemon=True).start()
+        threading.Thread(target=self.poll_metrics, daemon=True).start()        
+        #threading.Thread( target=self.poll_logs_from_file,args=("./logs/monitor_logs.log",),daemon=True).start()
         while True:
             time.sleep(1)

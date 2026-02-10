@@ -1,95 +1,87 @@
 from datetime import datetime
+import json, time, uuid, os
 
 from agents.remediation_agent.decision_engine import decide_action
 from agents.remediation_agent.executor import execute_action
-from agents.learning.action_store import record_action
-from agents.learning.incident_store import record_incident
+
+APPROVAL_FILE = "storage/approval.json"
 
 
 def remediation_agent(payload: dict):
-    """
-    Payload format:
-    {
-        "alert": {...},
-        "diagnosis": [...]
-    }
-    """
+    print(f"[REMEDIATION] Triggered at {datetime.utcnow().isoformat()}Z")
 
-    alert = payload.get("alert")
-    diagnosis = payload.get("diagnosis", [])
-
-    # --------------------------------------------------
-    # Guard: no diagnosis
-    # --------------------------------------------------
-    if not diagnosis:
-        print("[REMEDIATION] No diagnosis provided. Skipping remediation.")
+    diagnosis_list = payload.get("diagnosis", [])
+    service = payload.get("service")
+    if not diagnosis_list:
         return
 
-    # --------------------------------------------------
-    # Take highest confidence diagnosis
-    # --------------------------------------------------
-    top = diagnosis[0]
-    root_cause = top.get("root_cause", "UNKNOWN")
+    diagnosis = max(diagnosis_list, key=lambda d: d.get("confidence", 0))
+    decision = decide_action(diagnosis)
 
-    decision = decide_action(top)
+    action = decision["action"]
 
-    # --------------------------------------------------
-    # Guard: decision not approved
-    # --------------------------------------------------
-    if not decision.get("approved"):
-        reason = decision.get("reason", "Not approved for automation")
-        print(
-            f"[REMEDIATION] Skipping remediation for {root_cause}: {reason}"
-        )
-        return
+    # ---- AUTO APPROVED ----
+    if decision["approved"]:
+        _notify(f"Auto remediation started: {action}")
+        return _execute_and_resume(action)
 
-    action = decision.get("action")
+    # ---- HUMAN APPROVAL ----
+    incident_id = str(uuid.uuid4())
+    _send_to_ui(incident_id, diagnosis, decision)
 
-    # --------------------------------------------------
-    # Guard: no executable action
-    # --------------------------------------------------
-    if not action:
-        print(
-            f"[REMEDIATION] No executable action for root cause {root_cause}"
-        )
-        return
+    approved = _wait_for_approval()
 
-    # --------------------------------------------------
-    # Execute remediation
-    # --------------------------------------------------
-    print(f"[REMEDIATION] Executing action: {action}")
+    if approved:
+        _notify(f"Human approved remediation: {action}")
+        return _execute_and_resume(action,service=service)
 
-    result = execute_action(action)
+    _notify("Human rejected remediation")
 
-    success = result.get("success", False)
-    recovery_time = result.get("recovery_time", None)
 
-    print(
-        f"[REMEDIATION] Result: "
-        f"{'SUCCESS' if success else 'FAILURE'} "
-        f"(recovery_time={recovery_time}s)"
-    )
+def _send_to_ui(incident_id, diagnosis, decision):
+    os.makedirs("storage", exist_ok=True)
+    with open(APPROVAL_FILE, "w") as f:
+        json.dump({
+            "incident_id": incident_id,
+            "service": diagnosis["root_cause"],
+            "action": decision["action"],
+            "risk": decision["risk"],
+            "confidence": decision["confidence"],
+            "approved": None
+        }, f, indent=2)
 
-    # --------------------------------------------------
-    # Learning feedback: action-level
-    # --------------------------------------------------
-    record_action(
-        action=action,
-        success=success,
-        recovery_time=recovery_time
-    )
 
-    # --------------------------------------------------
-    # Learning feedback: incident-level
-    # --------------------------------------------------
-    record_incident(
-        anomaly=alert,
-        diagnosis=diagnosis,
-        resolved_root_cause=root_cause,
-        remediation={
-            "action": action,
-            "success": success,
-            "recovery_time_sec": recovery_time,
-            "timestamp": datetime.utcnow().isoformat()
-        }
-    )
+def _wait_for_approval(timeout=120):
+    waited = 0
+    while waited < timeout:
+        with open(APPROVAL_FILE) as f:
+            data = json.load(f)
+
+        if data.get("approved") is True:
+            _clear()
+            return True
+        if data.get("approved") is False:
+            _clear()
+            return False
+
+        time.sleep(2)
+        waited += 2
+
+    _clear()
+    return False
+
+
+def _execute_and_resume(action,service):
+    result = execute_action(action,service)
+    print(f"[REMEDIATION] SUCCESS={result['success']}")
+    print("[REMEDIATION] Monitoring continues...")
+    return result
+
+
+def _notify(msg):
+    print(f"[NOTIFICATION] {msg}")
+
+
+def _clear():
+    with open(APPROVAL_FILE, "w") as f:
+        json.dump({}, f)

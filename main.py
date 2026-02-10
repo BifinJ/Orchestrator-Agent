@@ -38,23 +38,48 @@ class Query(BaseModel):
 
 
 
-#@app.on_event("startup")
-#async def startup_event():
-#    """Runs ONCE when FastAPI starts"""
-#    await orc.start_background_agents()
+monitor_thread = None  # 👈 global guard
 
 @app.on_event("startup")
 def start_background_monitoring():
-    agent = MonitoringAgent()
-    threading.Thread(
-        target=agent.start,
-        daemon=True
-    ).start()
+    global monitor_thread
+
+    if monitor_thread is None:
+        agent = MonitoringAgent()
+        monitor_thread = threading.Thread(
+            target=agent.start,  # infinite loop inside
+            daemon=True
+        )
+        monitor_thread.start()
 
 @app.post("/query")
 async def handle_query(q: Query):
     return await orc.handle_request(q.message)
 
+
+import json
+import os
+from fastapi import Body
+
+APPROVAL_FILE = "storage/approval.json"
+os.makedirs("storage", exist_ok=True)
+
+
+@app.get("/approval")
+def get_approval():
+    try:
+        with open(APPROVAL_FILE) as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+@app.post("/approval")
+def set_approval(data: dict = Body(...)):
+    with open(APPROVAL_FILE, "w") as f:
+        json.dump(data, f, indent=2)
+    return {"status": "ok"}
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=False)

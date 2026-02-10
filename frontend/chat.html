@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Agent Orchestration</title>
+    
+    <!-- Marked.js for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
-        /* General Styling & Font */
+        /* General Styling */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,21 +18,22 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 1rem;
         }
 
-        /* Main App Container */
+        /* Main Container */
         .chat-container {
             width: 100%;
-            max-width: 800px;
-            height: 95vh;
-            background: #e5ddd5; /* WhatsApp background pattern placeholder */
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            height: 90vh;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -37,94 +41,171 @@
 
         /* Header */
         .chat-header {
-            background-color: #ffffff;
-            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.5rem;
             text-align: center;
-            border-bottom: 1px solid #ddd;
+            color: white;
         }
 
         .chat-header h1 {
-            font-size: 1.5rem;
-            color: #333;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
         .chat-header p {
-            font-size: 1rem;
-            color: #666;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        /* Chat Message Window */
+        /* Chat Window */
         .chat-window {
-            flex-grow: 1;
-            padding: 1rem;
+            flex: 1;
+            padding: 1.5rem;
             overflow-y: auto;
+            background: #f8f9fa;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        /* General Message Bubble Styling */
+        .chat-window::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        /* Message Bubbles */
         .message {
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 12px 18px;
+            border-radius: 18px;
             max-width: 75%;
-            line-height: 1.4;
+            line-height: 1.5;
             word-wrap: break-word;
-            /* Subtle Animation */
             animation: fadeIn 0.3s ease-in-out;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .user-message {
-            background-color: #DCF8C6; /* User green */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             align-self: flex-end;
-            border-radius: 20px 20px 5px 20px;
+            border-radius: 18px 18px 4px 18px;
         }
 
         .ai-message {
-            background-color: #FFFFFF; /* AI white */
+            background: #ffffff;
+            color: #333;
             align-self: flex-start;
-            border-radius: 20px 20px 20px 5px;
-            border: 1px solid #f0f0f0;
+            border-radius: 18px 18px 18px 4px;
+            border: 1px solid #e9ecef;
         }
 
         .error-message {
-            background-color: #ffebee;
+            background: #fee;
             color: #c62828;
             align-self: flex-start;
-            border-radius: 20px 20px 20px 5px;
+            border-radius: 18px 18px 18px 4px;
+            border: 1px solid #ffcdd2;
+        }
+
+        /* Markdown Content Styling */
+        .message p {
+            margin-bottom: 0.5rem;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message strong {
+            font-weight: 600;
+        }
+
+        .message em {
+            font-style: italic;
+        }
+
+        .message code {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .user-message code {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .message pre {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        .message pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .message ul, .message ol {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .message li {
+            margin-bottom: 0.25rem;
+        }
+
+        .message a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        .message h1, .message h2, .message h3, 
+        .message h4, .message h5, .message h6 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         /* Input Area */
         .chat-input-area {
-            padding: 0.75rem;
-            background-color: #f0f2f5;
-            border-top: 1px solid #ddd;
+            padding: 1rem 1.5rem;
+            background: #fff;
+            border-top: 1px solid #e9ecef;
         }
 
         #chat-form {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
-        /* UPDATED STYLING for <input type="text"> */
         #message-input {
-            flex-grow: 1;
-            border: none;
-            padding: 0.75rem 1rem; /* Adjusted padding for better look in an input field */
+            flex: 1;
+            border: 2px solid #e9ecef;
+            padding: 0.875rem 1.25rem;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: inherit;
-            /* Removed height, resize, and overflow-y properties */
+            transition: all 0.3s ease;
         }
 
         #message-input:focus {
             outline: none;
-            box-shadow: 0 0 0 2px #4CAF50;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         #send-button {
-            background-color: #075E54;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             border-radius: 50%;
             width: 50px;
@@ -133,34 +214,157 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
 
         #send-button:hover {
-            background-color: #128C7E;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+        }
+
+        #send-button:active {
+            transform: scale(0.95);
         }
 
         #send-button svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             fill: white;
         }
 
-        /* Animation Keyframes */
+        /* Modal Overlay */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal-content h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-content p {
+            margin-bottom: 0.75rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .modal-content strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .modal-content span {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Modal Buttons */
+        .modal-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .approve {
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .approve:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+        }
+
+        .reject {
+            background: #f44336;
+            color: white;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+        }
+
+        .reject:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(244, 67, 54, 0.4);
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .chat-container {
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .chat-header h1 {
+                font-size: 1.25rem;
+            }
+
+            .message {
+                max-width: 85%;
+            }
+        }
     </style>
 
     <script>
-        // Using DOMContentLoaded ensures the script runs after the HTML is fully parsed.
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- DOM Element References ---
@@ -168,18 +372,24 @@
             const messageInput = document.getElementById('message-input');
             const chatWindow = document.getElementById('chat-window');
             
-            const API_URL = 'http://127.0.0.1:8000/query';
+            // API Endpoints
+            const QUERY_API = 'http://127.0.0.1:8000/query';
+            const APPROVAL_API = 'http://127.0.0.1:8000/approval';
 
-            // --- Event Listener for Form Submission ---
+            // Modal Elements
+            const modal = document.getElementById('approval-modal');
+            const modalService = document.getElementById('modal-service');
+            const modalAction = document.getElementById('modal-action');
+            const modalRisk = document.getElementById('modal-risk');
+            const modalConfidence = document.getElementById('modal-confidence');
+            const approveBtn = document.getElementById('approve-btn');
+            const rejectBtn = document.getElementById('reject-btn');
+
+            let modalOpen = false;
+
+            // --- Chat Functionality ---
             chatForm.addEventListener('submit', handleFormSubmit);
 
-            // NOTE: The previous keydown listener is removed.
-            // When using <input type="text">, pressing 'Enter' submits the form by default.
-
-            /**
-             * Handles the form submission event.
-             * @param {Event} e The form submission event.
-             */
             async function handleFormSubmit(e) {
                 e.preventDefault(); 
                 
@@ -193,30 +403,25 @@
                 await getAIResponse(userMessage, thinkingIndicator);
             }
 
-            /**
-             * Creates and appends a new message bubble to the chat window.
-             * @param {string} text The message content.
-             * @param {string} className The CSS class for the message.
-             * @returns {HTMLElement} The created message element.
-             */
             function appendMessage(text, className) {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message', className);
-                messageDiv.textContent = text;
+                
+                // Render markdown for AI messages, plain text for user messages
+                if (className === 'ai-message' || className === 'error-message') {
+                    messageDiv.innerHTML = marked.parse(text);
+                } else {
+                    messageDiv.textContent = text;
+                }
+                
                 chatWindow.appendChild(messageDiv);
-
                 chatWindow.scrollTop = chatWindow.scrollHeight;
                 return messageDiv;
             }
 
-            /**
-             * Sends the user's message to the backend API and displays the response.
-             * @param {string} message The user's input message.
-             * @param {HTMLElement} placeholderElement The 'Thinking...' element to be updated.
-             */
             async function getAIResponse(message, placeholderElement) {
                 try {
-                    const response = await fetch(API_URL, {
+                    const response = await fetch(QUERY_API, {
                         method: "POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ message: message }),
@@ -229,28 +434,92 @@
                     const data = await response.json();
                     const fusedResponse = data.fused || "Sorry, I couldn't get a proper response.";
                     
-                    placeholderElement.textContent = fusedResponse;
+                    placeholderElement.innerHTML = marked.parse(fusedResponse);
 
                 } catch (error) {
                     console.error('Error fetching AI response:', error);
-                    placeholderElement.textContent = 'Error: Could not connect to the agent service.';
+                    placeholderElement.innerHTML = marked.parse('Error: Could not connect to the agent service.');
                     placeholderElement.classList.remove('ai-message');
                     placeholderElement.classList.add('error-message');
                 }
             }
+
+            // --- Approval Modal Functionality ---
+            async function pollApproval() {
+                try {
+                    const res = await fetch(APPROVAL_API);
+                    if (!res.ok) return;
+
+                    const data = await res.json();
+
+                    // File cleared → close modal
+                    if (!data.action) {
+                        closeModal();
+                        return;
+                    }
+
+                    if (data.approved === null && !modalOpen) {
+                        openModal(data);
+                    }
+                } catch (error) {
+                    // Silently ignore errors
+                }
+            }
+
+            function openModal(data) {
+                modalService.textContent = data.service;
+                modalAction.textContent = data.action;
+                modalRisk.textContent = data.risk;
+                modalConfidence.textContent = data.confidence;
+
+                modal.classList.remove('hidden');
+                modalOpen = true;
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modalOpen = false;
+            }
+
+            async function writeDecision(approved) {
+                try {
+                    const res = await fetch(APPROVAL_API);
+                    const data = await res.json();
+
+                    data.approved = approved;
+
+                    await fetch(APPROVAL_API, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+
+                    closeModal();
+                } catch (error) {
+                    console.error('Error writing decision:', error);
+                }
+            }
+
+            approveBtn.onclick = () => writeDecision(true);
+            rejectBtn.onclick = () => writeDecision(false);
+
+            // Poll for approval requests every 2 seconds
+            setInterval(pollApproval, 2000);
         });
     </script>
 </head>
 <body>
 
+    <!-- Main Chat Container -->
     <div class="chat-container">
         <header class="chat-header">
             <h1>Multi Agent Orchestration</h1>
-            <!-- <p>Powered by multiple specialized AI agents</p> -->
+            <p>Powered by specialized AI agents</p>
         </header>
         
         <main id="chat-window" class="chat-window">
-            </main>
+            <!-- Messages will appear here -->
+        </main>
 
         <footer class="chat-input-area">
             <form id="chat-form">
@@ -263,6 +532,22 @@
                 </button>
             </form>
         </footer>
+    </div>
+
+    <!-- Approval Modal -->
+    <div id="approval-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>🔐 Remediation Approval</h3>
+            <p><strong>Service:</strong> <span id="modal-service"></span></p>
+            <p><strong>Action:</strong> <span id="modal-action"></span></p>
+            <p><strong>Risk Level:</strong> <span id="modal-risk"></span></p>
+            <p><strong>Confidence:</strong> <span id="modal-confidence"></span></p>
+
+            <div class="modal-buttons">
+                <button id="approve-btn" class="approve">✓ Approve</button>
+                <button id="reject-btn" class="reject">✗ Reject</button>
+            </div>
+        </div>
     </div>
 
 </body>
