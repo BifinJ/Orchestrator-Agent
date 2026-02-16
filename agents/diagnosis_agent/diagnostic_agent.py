@@ -66,16 +66,16 @@ class DiagnosticAgent:
         
         # Sort by confidence
         diagnoses = sorted(diagnoses, key=lambda d: d.get("confidence", 0), reverse=True)
-        # #logging for future analysis
-        # log_file = Path("./storage/diagnosis.log")
-        # logger = logging.getLogger("diagnosis")
-        # logger.setLevel(logging.DEBUG)
-        # logger.propagate = False  # 🔹 prevent Uvicorn from writing to the same handler
+        # logging for future analysis
+        log_file = Path("./storage/diagnosis.log")
+        logger = logging.getLogger("diagnosis")
+        logger.setLevel(logging.DEBUG)
+        logger.propagate = False  # 🔹 prevent Uvicorn from writing to the same handler
 
-        # # File handler in append mode
-        # file_handler = logging.FileHandler(log_file, mode="a")  # append mode
-        # formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-        # file_handler.setFormatter(formatter)
+        # File handler in append mode
+        file_handler = logging.FileHandler(log_file, mode="a")  # append mode
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        file_handler.setFormatter(formatter)
         # logger.addHandler(file_handler)
 
         # # Optional: console logs

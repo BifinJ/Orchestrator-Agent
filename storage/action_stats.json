@@ -1,0 +1,7 @@
+{
+  "restart_api": {
+    "success": 0,
+    "failure": 1,
+    "total_recovery_time": 0.0
+  }
+}

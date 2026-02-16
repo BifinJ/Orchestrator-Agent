@@ -1,0 +1,1 @@
+{"timestamp": "2026-02-16T18:10:27.259543Z", "service": "api", "root_cause": "api", "confidence": 0.8, "action": "restart_api", "score": 0.5750000000000001, "justification": "a*=restart_api S=0.575 | \u03b3=0.80 \u03c1=1.0 \u03ba=0.1 \u03b2=0.2 \u03b8=0.55", "success": null}
