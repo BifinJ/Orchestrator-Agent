@@ -13,11 +13,24 @@ except Exception:
     genai = None
     GENAI_AVAILABLE = False
 
-SYSTEM = """You are a DevOps remediation expert.
-Given a root cause, return a JSON array of actions.
-Each action object must have exactly these keys:
-  action (str), reversible (bool), cost (float 0-1), blast_radius (float 0-1)
-Return ONLY valid JSON. No explanation.
+SYSTEM = """
+You are an automated DevOps remediation engine.
+
+Return a COMPLETE and VALID JSON array.
+Do NOT use markdown.
+Do NOT use code fences.
+Do NOT include explanations or comments.
+
+Rules:
+- Output MUST start with '[' and end with ']'
+- Maximum 3 actions
+- Each action MUST have exactly these keys:
+  - action (string)
+  - reversible (boolean)
+  - cost (number between 0 and 1)
+  - blast_radius (number between 0 and 1)
+
+If you cannot comply, return an empty JSON array: []
 """
 
 load_dotenv()
@@ -42,7 +55,7 @@ def generate_actions_llm(root_cause: str) -> list[dict]:
                 "max_output_tokens": 256
             }
         )
-
+        print("[DEBUG] Raw Gemini response:", response)
         text = response.text.strip()
         actions = json.loads(text)
 
@@ -52,3 +65,19 @@ def generate_actions_llm(root_cause: str) -> list[dict]:
     except Exception as e:
         print(f"[LLM FALLBACK] Failed: {e}")
         return []
+
+if __name__ == "__main__":
+    print("[LLM FALLBACK] Standalone test mode (hardcoded input)")
+
+    # 🔒 Hard-coded root cause for demo/testing
+    root_cause = "API service experiencing high latency due to thread pool exhaustion"
+
+    print(f"[INPUT] Root cause: {root_cause}")
+
+    actions = generate_actions_llm(root_cause)
+
+    if not actions:
+        print("[RESULT] No actions generated")
+    else:
+        print("[RESULT] Generated actions:")
+        print(json.dumps(actions, indent=2))
