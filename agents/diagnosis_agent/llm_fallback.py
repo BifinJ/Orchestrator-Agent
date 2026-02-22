@@ -5,6 +5,8 @@ import json
 import requests
 from typing import Dict, List, Optional
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class LLMDiagnosticFallback:
