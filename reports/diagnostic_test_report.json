@@ -1,0 +1,1112 @@
+{
+  "summary": {
+    "total_tests": 195,
+    "passed": 52,
+    "failed": 143,
+    "accuracy_percent": 26.67,
+    "avg_latency_ms": 219.12,
+    "median_latency_ms": 0.27,
+    "p95_latency_ms": 1282.79,
+    "p99_latency_ms": 2408.91,
+    "avg_confidence": 0.815,
+    "llm_usage_rate_percent": 12.82,
+    "llm_used_count": 25
+  },
+  "category_performance": {
+    "dns_failure": {
+      "total_tests": 10,
+      "passed": 5,
+      "failed": 5,
+      "accuracy_percent": 50.0,
+      "avg_latency_ms": 0.29,
+      "avg_confidence": 0.8,
+      "llm_usage_count": 0
+    },
+    "queue_backlog": {
+      "total_tests": 8,
+      "passed": 0,
+      "failed": 8,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.28,
+      "avg_confidence": 0.75,
+      "llm_usage_count": 0
+    },
+    "rate_limiting": {
+      "total_tests": 10,
+      "passed": 0,
+      "failed": 10,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.26,
+      "avg_confidence": 0.75,
+      "llm_usage_count": 0
+    },
+    "resource_exhaustion": {
+      "total_tests": 10,
+      "passed": 9,
+      "failed": 1,
+      "accuracy_percent": 90.0,
+      "avg_latency_ms": 532.35,
+      "avg_confidence": 0.848,
+      "llm_usage_count": 4
+    },
+    "deadlock": {
+      "total_tests": 8,
+      "passed": 4,
+      "failed": 4,
+      "accuracy_percent": 50.0,
+      "avg_latency_ms": 0.15,
+      "avg_confidence": 0.8,
+      "llm_usage_count": 0
+    },
+    "performance_degradation": {
+      "total_tests": 7,
+      "passed": 3,
+      "failed": 4,
+      "accuracy_percent": 42.86,
+      "avg_latency_ms": 0.4,
+      "avg_confidence": 0.871,
+      "llm_usage_count": 0
+    },
+    "memory_leak": {
+      "total_tests": 10,
+      "passed": 0,
+      "failed": 10,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.13,
+      "avg_confidence": 0.86,
+      "llm_usage_count": 0
+    },
+    "disk_space": {
+      "total_tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "accuracy_percent": 100.0,
+      "avg_latency_ms": 0.09,
+      "avg_confidence": 0.8,
+      "llm_usage_count": 0
+    },
+    "load_balancer": {
+      "total_tests": 10,
+      "passed": 2,
+      "failed": 8,
+      "accuracy_percent": 20.0,
+      "avg_latency_ms": 935.44,
+      "avg_confidence": 0.908,
+      "llm_usage_count": 4
+    },
+    "cache_failure": {
+      "total_tests": 15,
+      "passed": 0,
+      "failed": 15,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.16,
+      "avg_confidence": 0.837,
+      "llm_usage_count": 0
+    },
+    "auth_error": {
+      "total_tests": 10,
+      "passed": 9,
+      "failed": 1,
+      "accuracy_percent": 90.0,
+      "avg_latency_ms": 0.36,
+      "avg_confidence": 0.855,
+      "llm_usage_count": 0
+    },
+    "intermittent_error": {
+      "total_tests": 8,
+      "passed": 0,
+      "failed": 8,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.13,
+      "avg_confidence": 0.75,
+      "llm_usage_count": 0
+    },
+    "third_party_api": {
+      "total_tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "accuracy_percent": 100.0,
+      "avg_latency_ms": 0.1,
+      "avg_confidence": 0.8,
+      "llm_usage_count": 0
+    },
+    "database_connection": {
+      "total_tests": 15,
+      "passed": 0,
+      "failed": 15,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 0.18,
+      "avg_confidence": 0.827,
+      "llm_usage_count": 0
+    },
+    "cascading_failure": {
+      "total_tests": 10,
+      "passed": 2,
+      "failed": 8,
+      "accuracy_percent": 20.0,
+      "avg_latency_ms": 723.72,
+      "avg_confidence": 0.854,
+      "llm_usage_count": 4
+    },
+    "novel_issue": {
+      "total_tests": 6,
+      "passed": 0,
+      "failed": 6,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 930.16,
+      "avg_confidence": 0.267,
+      "llm_usage_count": 2
+    },
+    "network_timeout": {
+      "total_tests": 15,
+      "passed": 0,
+      "failed": 15,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 285.85,
+      "avg_confidence": 0.833,
+      "llm_usage_count": 4
+    },
+    "config_error": {
+      "total_tests": 10,
+      "passed": 0,
+      "failed": 10,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 667.33,
+      "avg_confidence": 0.881,
+      "llm_usage_count": 6
+    },
+    "correlated_failure": {
+      "total_tests": 7,
+      "passed": 0,
+      "failed": 7,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 77.15,
+      "avg_confidence": 0.921,
+      "llm_usage_count": 0
+    },
+    "ssl_certificate": {
+      "total_tests": 8,
+      "passed": 0,
+      "failed": 8,
+      "accuracy_percent": 0.0,
+      "avg_latency_ms": 463.26,
+      "avg_confidence": 0.871,
+      "llm_usage_count": 1
+    }
+  },
+  "failure_analysis": {
+    "total_failures": 143,
+    "failure_by_category": {
+      "database_connection": [
+        {
+          "test_id": "DB_001",
+          "expected": "database",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_002",
+          "expected": "database",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_003",
+          "expected": "database",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_004",
+          "expected": "database",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_005",
+          "expected": "database",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_000",
+          "expected": "database",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_001",
+          "expected": "database",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_002",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_003",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "DB_004",
+          "expected": "database",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_005",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_006",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "DB_007",
+          "expected": "database",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_008",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DB_009",
+          "expected": "database",
+          "actual": "auth",
+          "confidence": 0.95
+        }
+      ],
+      "cache_failure": [
+        {
+          "test_id": "CACHE_001",
+          "expected": "cache",
+          "actual": "auth",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CACHE_002",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_003",
+          "expected": "cache",
+          "actual": "auth",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CACHE_004",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_005",
+          "expected": "cache",
+          "actual": "auth",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CACHE_006",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_007",
+          "expected": "cache",
+          "actual": "auth",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "CACHE_008",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_009",
+          "expected": "cache",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_010",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_011",
+          "expected": "cache",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_012",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_013",
+          "expected": "cache",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_014",
+          "expected": "cache",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CACHE_015",
+          "expected": "cache",
+          "actual": "api",
+          "confidence": 0.8
+        }
+      ],
+      "network_timeout": [
+        {
+          "test_id": "NET_001",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_002",
+          "expected": "network",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_003",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "NET_004",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_005",
+          "expected": "network",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_006",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "NET_007",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_008",
+          "expected": "network",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_009",
+          "expected": "network",
+          "actual": "lambda",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "NET_010",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_011",
+          "expected": "network",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_012",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "NET_013",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_014",
+          "expected": "network",
+          "actual": "worker",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NET_015",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.9
+        }
+      ],
+      "auth_error": [
+        {
+          "test_id": "AUTH_001",
+          "expected": "auth",
+          "actual": "api",
+          "confidence": 0.8
+        }
+      ],
+      "resource_exhaustion": [
+        {
+          "test_id": "RES_010",
+          "expected": "compute",
+          "actual": "api",
+          "confidence": 0.8
+        }
+      ],
+      "rate_limiting": [
+        {
+          "test_id": "RATE_001",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_002",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_003",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_004",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_005",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_006",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_007",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_008",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_009",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "RATE_010",
+          "expected": "api",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        }
+      ],
+      "memory_leak": [
+        {
+          "test_id": "MEM_001",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "MEM_002",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "MEM_003",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "MEM_004",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "MEM_005",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "MEM_006",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.8500000000000001
+        },
+        {
+          "test_id": "MEM_007",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "MEM_008",
+          "expected": "application",
+          "actual": "storage",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "MEM_009",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "MEM_010",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        }
+      ],
+      "cascading_failure": [
+        {
+          "test_id": "CASCADE_001",
+          "expected": "storage",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CASCADE_002",
+          "expected": "network",
+          "actual": "database",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CASCADE_003",
+          "expected": "database",
+          "actual": "cache",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CASCADE_004",
+          "expected": "storage",
+          "actual": "database",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CASCADE_005",
+          "expected": "network",
+          "actual": "database",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CASCADE_007",
+          "expected": "storage",
+          "actual": "cache",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CASCADE_008",
+          "expected": "network",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "CASCADE_010",
+          "expected": "storage",
+          "actual": "database",
+          "confidence": 0.8
+        }
+      ],
+      "config_error": [
+        {
+          "test_id": "CONFIG_001",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "CONFIG_002",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "CONFIG_003",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CONFIG_004",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "CONFIG_005",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "CONFIG_006",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CONFIG_007",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "CONFIG_008",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "CONFIG_009",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CONFIG_010",
+          "expected": "application",
+          "actual": "database",
+          "confidence": 0.95
+        }
+      ],
+      "load_balancer": [
+        {
+          "test_id": "LB_001",
+          "expected": "load_balancer",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "LB_002",
+          "expected": "load_balancer",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "LB_003",
+          "expected": "load_balancer",
+          "actual": "database",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "LB_004",
+          "expected": "load_balancer",
+          "actual": "api",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "LB_005",
+          "expected": "load_balancer",
+          "actual": "api",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "LB_007",
+          "expected": "load_balancer",
+          "actual": "api",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "LB_008",
+          "expected": "load_balancer",
+          "actual": "api",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "LB_009",
+          "expected": "load_balancer",
+          "actual": "api",
+          "confidence": 0.9
+        }
+      ],
+      "dns_failure": [
+        {
+          "test_id": "DNS_002",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DNS_004",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DNS_006",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DNS_008",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DNS_010",
+          "expected": "network",
+          "actual": "api",
+          "confidence": 0.8
+        }
+      ],
+      "ssl_certificate": [
+        {
+          "test_id": "SSL_001",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "SSL_002",
+          "expected": "application",
+          "actual": "network",
+          "confidence": 0.92
+        },
+        {
+          "test_id": "SSL_003",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "SSL_004",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "SSL_005",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "SSL_006",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "SSL_007",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "SSL_008",
+          "expected": "application",
+          "actual": "api",
+          "confidence": 0.95
+        }
+      ],
+      "queue_backlog": [
+        {
+          "test_id": "QUEUE_001",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_002",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_003",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_004",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_005",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_006",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_007",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "QUEUE_008",
+          "expected": "queue",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        }
+      ],
+      "deadlock": [
+        {
+          "test_id": "DEADLOCK_002",
+          "expected": "database",
+          "actual": "application",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DEADLOCK_004",
+          "expected": "database",
+          "actual": "application",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DEADLOCK_006",
+          "expected": "database",
+          "actual": "application",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "DEADLOCK_008",
+          "expected": "database",
+          "actual": "application",
+          "confidence": 0.8
+        }
+      ],
+      "intermittent_error": [
+        {
+          "test_id": "INTERMIT_001",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_002",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_003",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_004",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_005",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_006",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_007",
+          "expected": "network",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "INTERMIT_008",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        }
+      ],
+      "correlated_failure": [
+        {
+          "test_id": "CORR_001",
+          "expected": "systemic_issue",
+          "actual": "api",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "CORR_002",
+          "expected": "systemic_issue",
+          "actual": "network",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CORR_003",
+          "expected": "systemic_issue",
+          "actual": "network",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CORR_004",
+          "expected": "systemic_issue",
+          "actual": "database",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "CORR_005",
+          "expected": "systemic_issue",
+          "actual": "network",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CORR_006",
+          "expected": "systemic_issue",
+          "actual": "network",
+          "confidence": 0.95
+        },
+        {
+          "test_id": "CORR_007",
+          "expected": "systemic_issue",
+          "actual": "database",
+          "confidence": 0.95
+        }
+      ],
+      "performance_degradation": [
+        {
+          "test_id": "PERF_002",
+          "expected": "application",
+          "actual": "network",
+          "confidence": 0.9
+        },
+        {
+          "test_id": "PERF_003",
+          "expected": "network",
+          "actual": "database",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "PERF_005",
+          "expected": "application",
+          "actual": "systemic_issue",
+          "confidence": 0.75
+        },
+        {
+          "test_id": "PERF_006",
+          "expected": "network",
+          "actual": "database",
+          "confidence": 0.8
+        }
+      ],
+      "novel_issue": [
+        {
+          "test_id": "NOVEL_001",
+          "expected": "unknown",
+          "actual": "application",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NOVEL_002",
+          "expected": "unknown",
+          "actual": null,
+          "confidence": 0.0
+        },
+        {
+          "test_id": "NOVEL_003",
+          "expected": "unknown",
+          "actual": null,
+          "confidence": 0.0
+        },
+        {
+          "test_id": "NOVEL_004",
+          "expected": "unknown",
+          "actual": null,
+          "confidence": 0.0
+        },
+        {
+          "test_id": "NOVEL_005",
+          "expected": "unknown",
+          "actual": "application",
+          "confidence": 0.8
+        },
+        {
+          "test_id": "NOVEL_006",
+          "expected": "unknown",
+          "actual": null,
+          "confidence": 0.0
+        }
+      ]
+    },
+    "failure_reasons": {
+      "wrong_root_cause": 139,
+      "low_confidence": 0,
+      "no_diagnosis": 4,
+      "exception_error": 0
+    }
+  },
+  "latency_distribution": {
+    "min_ms": 0.06,
+    "max_ms": 3173.77,
+    "std_dev_ms": 533.38
+  },
+  "confidence_distribution": {
+    "min": 0.0,
+    "max": 0.95,
+    "std_dev": 0.136
+  }
+}
