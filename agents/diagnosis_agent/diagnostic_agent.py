@@ -181,7 +181,7 @@ class DiagnosticAgent:
                     "impact_analysis": analyze_impact(dep_service)
                 })
 
-            return diagnoses
+        return diagnoses
     
     def _detect_cascading_failures(self, alert: Dict) -> Optional[Dict]:
         """

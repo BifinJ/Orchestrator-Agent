@@ -1,8 +1,1 @@
-{
-  "incident_id": "3b4ddbe6-7d96-44d1-928e-6660f4d18149",
-  "service": "api",
-  "action": "restart_api",
-  "risk": "low",
-  "confidence": 0.7,
-  "approved": null
-}
+{}

@@ -1,0 +1,46 @@
+{
+    "total_tests": 180,
+    "accuracy": 0.65,
+    "average_latency_sec": 0.0002504679891798231,
+    "average_confidence": 0.8333333333333337,
+    "per_class_accuracy": {
+        "database": 0.8,
+        "auth": 0.5,
+        "api": 0.6333333333333333,
+        "storage": 0.8,
+        "network": 0.5666666666666667,
+        "cache": 0.6
+    },
+    "confusion_matrix": {
+        "database": {
+            "api": 1,
+            "database": 24,
+            "systemic_issue": 5
+        },
+        "auth": {
+            "database": 7,
+            "auth": 15,
+            "systemic_issue": 8
+        },
+        "api": {
+            "auth": 9,
+            "api": 19,
+            "systemic_issue": 2
+        },
+        "storage": {
+            "storage": 24,
+            "systemic_issue": 6
+        },
+        "network": {
+            "storage": 1,
+            "network": 17,
+            "systemic_issue": 12
+        },
+        "cache": {
+            "database": 6,
+            "network": 3,
+            "cache": 18,
+            "systemic_issue": 3
+        }
+    }
+}

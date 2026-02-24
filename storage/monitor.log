@@ -1,1 +1,4 @@
 {"timestamp": "2026-02-16T18:10:57.277157Z", "service": "api", "remediated_at": "2026-02-16T18:10:27.262525+00:00", "new_log_alerts": 0, "new_metric_alerts": 0, "recovered": true}
+{"timestamp": "2026-02-18T09:12:53.051153Z", "service": "database", "remediated_at": "2026-02-18T09:12:23.020121+00:00", "new_log_alerts": 0, "new_metric_alerts": 0, "recovered": true}
+{"timestamp": "2026-02-18T09:14:00.009222Z", "service": "database", "remediated_at": "2026-02-18T09:13:29.992413+00:00", "new_log_alerts": 0, "new_metric_alerts": 0, "recovered": true}
+{"timestamp": "2026-02-18T09:14:35.613999Z", "service": "database", "remediated_at": "2026-02-18T09:14:05.582801+00:00", "new_log_alerts": 0, "new_metric_alerts": 0, "recovered": true}

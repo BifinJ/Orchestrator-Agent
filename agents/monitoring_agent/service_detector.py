@@ -1,213 +1,135 @@
 import re
-from typing import Optional, Dict
+from collections import defaultdict
+from typing import Dict, Optional, List
 
 
 class ServiceDetector:
-    """
-    Dynamically identifies which service an alert belongs to
-    based on context clues from logs, metrics, and AWS metadata.
-    """
-    
-    # Service patterns for log message detection
+
     LOG_PATTERNS = {
-        'api': [
-            r'GET\s+/',
-            r'POST\s+/',
-            r'PUT\s+/',
-            r'DELETE\s+/',
-            r'HTTP/\d\.\d',
-            r'\d{3}\s+\d+\.\d+ms', 
-            r'application/json',
-            r'User-Agent:',
+        "api": [
+            r"\bGET\b", r"\bPOST\b", r"\bPUT\b", r"\bDELETE\b",
+            r"HTTP/\d\.\d",
+            r"\b\d{3}\b\s+\d+ms",
+            r"User-Agent",
+            r"Random", r"System", r"failure", r"Simulated"
         ],
-        'database': [
-            r'mysql',
-            r'postgres',
-            r'connection pool',
-            r'query timeout',
-            r'deadlock',
-            r'transaction',
-            r'SELECT\s+\*',
-            r'INSERT INTO',
-            r'UPDATE\s+\w+\s+SET',
+        "database": [
+            r"\bmysql\b", r"\bpostgres\b", r"\bconnection\b",
+            r"\bquery\b", r"\btransaction\b",
+            r"\bdeadlock\b", r"\btimeout\b",
+            r"\bSELECT\b", r"\bINSERT\b", r"\bUPDATE\b",
         ],
-        'cache': [
-            r'redis',
-            r'memcached',
-            r'cache miss',
-            r'cache hit',
-            r'eviction',
+        "cache": [
+            r"\bredis\b", r"\bmemcached\b",
+            r"\bcache hit\b", r"\bcache miss\b",
         ],
-        'queue': [
-            r'sqs',
-            r'rabbitmq',
-            r'kafka',
-            r'message queue',
-            r'consumer',
-            r'producer',
+        "queue": [
+            r"\bsqs\b", r"\bkafka\b",
+            r"\brabbitmq\b", r"\bconsumer\b", r"\bproducer\b",
         ],
-        'worker': [
-            r'celery',
-            r'background job',
-            r'task\s+\w+\s+(started|completed|failed)',
-            r'worker\s+\d+',
+        "worker": [
+            r"\bcelery\b", r"\bbackground job\b",
+            r"\btask\b.*\b(started|failed|completed)\b",
         ]
     }
-    
-    # AWS namespace to service mapping
+
     NAMESPACE_TO_SERVICE = {
-        'AWS/EC2': 'ec2',
-        'AWS/RDS': 'database',
-        'AWS/ELB': 'load_balancer',
-        'AWS/ApplicationELB': 'load_balancer',
-        'AWS/Lambda': 'lambda',
-        'AWS/DynamoDB': 'database',
-        'AWS/ElastiCache': 'cache',
-        'AWS/SQS': 'queue',
-        'AWS/ECS': 'container',
-        'AWS/EKS': 'container',
+        "AWS/EC2": "compute",
+        "AWS/RDS": "database",
+        "AWS/ElastiCache": "cache",
+        "AWS/SQS": "queue",
+        "AWS/Lambda": "lambda",
+        "AWS/ApplicationELB": "load_balancer",
+        "AWS/ELB": "load_balancer",
     }
-    
-    # Metric name patterns
+
     METRIC_PATTERNS = {
-        'api': ['RequestCount', 'TargetResponseTime', 'HTTPCode'],
-        'database': ['DatabaseConnections', 'ReadLatency', 'WriteLatency'],
-        'cache': ['CacheHits', 'CacheMisses', 'Evictions'],
-        'network': ['NetworkIn', 'NetworkOut', 'NetworkPackets'],
-        'compute': ['CPUUtilization', 'CPUCreditBalance', 'StatusCheck'],
-        'storage': ['DiskReadBytes', 'DiskWriteBytes', 'VolumeReadOps'],
+        "compute": ["CPUUtilization", "StatusCheck", "NetworkIn", "NetworkOut"],
+        "database": ["DatabaseConnections", "ReadLatency", "WriteLatency"],
+        "cache": ["CacheHits", "CacheMisses", "Evictions"],
+        "queue": ["NumberOfMessages", "ApproximateAgeOfOldestMessage"],
+        "load_balancer": ["RequestCount", "TargetResponseTime", "HTTPCode"],
     }
-    
+
     @classmethod
-    def detect_from_log(cls, message: str) -> str:
-        """
-        Detect service type from log message content.
-        
-        Args:
-            message: The log message string
-            
-        Returns:
-            Service name (e.g., 'api', 'database', 'cache')
-        """
-        if not isinstance(message, str):
-            return 'unknown'
-        
-        message_lower = message.lower()
-        
-        # Check each service pattern
+    def detect_from_log(cls, message: str) -> Dict:
+        scores = defaultdict(int)
+
+        if not message:
+            return {"service": "unknown", "confidence": 0.0}
+
         for service, patterns in cls.LOG_PATTERNS.items():
             for pattern in patterns:
-                if re.search(pattern, message_lower, re.IGNORECASE):
-                    return service
-        
-        # Default to 'application' if no specific service detected
-        return 'application'
-    
+                if re.search(pattern, message, re.IGNORECASE):
+                    scores[service] += 1
+
+        if not scores:
+            return {"service": "unknown", "confidence": 0.0}
+
+        best = max(scores, key=scores.get)
+        confidence = scores[best] / sum(scores.values())
+
+        return {"service": best, "confidence": round(confidence, 2)}
+
     @classmethod
-    def detect_from_metric(cls, metric_name: str, namespace: str) -> str:
-        """
-        Detect service type from CloudWatch metric.
-        
-        Args:
-            metric_name: The metric name (e.g., 'CPUUtilization')
-            namespace: AWS namespace (e.g., 'AWS/EC2')
-            
-        Returns:
-            Service name
-        """
-        # First try namespace mapping
+    def detect_from_metric(cls, metric_name: str, namespace: str) -> Dict:
+        scores = defaultdict(int)
+
+        # namespace priority weight
         if namespace in cls.NAMESPACE_TO_SERVICE:
-            base_service = cls.NAMESPACE_TO_SERVICE[namespace]
-            
-            # Refine based on metric name if possible
-            for service, metric_keywords in cls.METRIC_PATTERNS.items():
-                for keyword in metric_keywords:
-                    if keyword in metric_name:
-                        return service
-            
-            return base_service
-        
-        # Fall back to metric pattern matching
-        for service, metric_keywords in cls.METRIC_PATTERNS.items():
-            for keyword in metric_keywords:
+            base = cls.NAMESPACE_TO_SERVICE[namespace]
+            scores[base] += 2
+
+        for service, metrics in cls.METRIC_PATTERNS.items():
+            for keyword in metrics:
                 if keyword in metric_name:
-                    return service
-        
-        return 'ec2'  # Default for unknown EC2 metrics
-    
+                    scores[service] += 1
+
+        if not scores:
+            return {"service": "unknown", "confidence": 0.0}
+
+        best = max(scores, key=scores.get)
+        confidence = scores[best] / sum(scores.values())
+
+        return {"service": best, "confidence": round(confidence, 2)}
+
     @classmethod
-    def detect_from_dimensions(cls, dimensions: list) -> Optional[str]:
-        """
-        Detect service from CloudWatch dimensions.
-        
-        Args:
-            dimensions: List of dimension dicts with 'Name' and 'Value'
-            
-        Returns:
-            Service name if detectable, None otherwise
-        """
+    def detect_from_dimensions(cls, dimensions: List[Dict]) -> Optional[str]:
         for dim in dimensions:
-            name = dim.get('Name', '')
-            
-            if name == 'LoadBalancer':
-                return 'load_balancer'
-            elif name == 'TargetGroup':
-                return 'api'
-            elif name == 'DBInstanceIdentifier':
-                return 'database'
-            elif name == 'CacheClusterId':
-                return 'cache'
-            elif name == 'QueueName':
-                return 'queue'
-            elif name == 'FunctionName':
-                return 'lambda'
-        
+            name = dim.get("Name", "")
+            if name == "DBInstanceIdentifier":
+                return "database"
+            if name == "LoadBalancer":
+                return "load_balancer"
+            if name == "TargetGroup":
+                return "api"
+            if name == "FunctionName":
+                return "lambda"
         return None
-    
+
     @classmethod
-    def detect_service(cls, 
-                      message: str = None, 
-                      metric_name: str = None,
-                      namespace: str = None,
-                      dimensions: list = None) -> str:
-        """
-        Comprehensive service detection using all available context.
-        
-        Args:
-            message: Log message (optional)
-            metric_name: Metric name (optional)
-            namespace: AWS namespace (optional)
-            dimensions: Metric dimensions (optional)
-            
-        Returns:
-            Detected service name
-        """
-        # Priority 1: Check dimensions (most specific)
+    def detect_service(
+        cls,
+        message: str = None,
+        metric_name: str = None,
+        namespace: str = None,
+        dimensions: list = None
+    ) -> str:
+
+        # 1️⃣ Dimensions highest priority
         if dimensions:
-            service = cls.detect_from_dimensions(dimensions)
-            if service:
-                return service
-        
-        # Priority 2: Check metric + namespace
+            svc = cls.detect_from_dimensions(dimensions)
+            if svc:
+                return svc
+
+        # 2️⃣ Metric-based detection
         if metric_name and namespace:
-            return cls.detect_from_metric(metric_name, namespace)
-        
-        # Priority 3: Check log message
+            result = cls.detect_from_metric(metric_name, namespace)
+            return result["service"]
+
+        # 3️⃣ Log-based detection
         if message:
-            return cls.detect_from_log(message)
-        
-        # Default fallback
-        return 'unknown'
+            result = cls.detect_from_log(message)
+            return result["service"]
 
-
-# Convenience function for quick detection
-def detect_service(**kwargs) -> str:
-    """
-    Quick service detection function.
-    
-    Usage:
-        detect_service(message="GET /api/users 200 45.2ms")
-        detect_service(metric_name="CPUUtilization", namespace="AWS/EC2")
-        detect_service(dimensions=[{"Name": "LoadBalancer", "Value": "..."}])
-    """
-    return ServiceDetector.detect_service(**kwargs)
+        return "unknown"

@@ -1,7 +1,12 @@
 {
   "restart_api": {
-    "success": 0,
+    "success": 1,
     "failure": 1,
+    "total_recovery_time": 0.0
+  },
+  "increase_db_pool": {
+    "success": 0,
+    "failure": 3,
     "total_recovery_time": 0.0
   }
 }

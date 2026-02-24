@@ -10,7 +10,7 @@ BOOK = {
     "AUTH": [
         {"action": "restart_auth", "reversible": True,  "cost": 0.3, "blast_radius": 0.5},
     ],
-    "DB": [
+    "database": [
         {"action": "restart_db",        "reversible": True,  "cost": 0.5, "blast_radius": 0.7},
         {"action": "increase_db_pool",  "reversible": True,  "cost": 0.2, "blast_radius": 0.2},
     ],

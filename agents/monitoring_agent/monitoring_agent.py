@@ -10,8 +10,8 @@ from agents.monitoring_agent.storage_helper import append_json, append_metric, s
 from agents.monitoring_agent.detection_helper import classify_log, detect_http_status
 from agents.remediation_agent.remediation_agent import remediation_agent
 from agents.diagnosis_agent.diagnostic_agent import DiagnosticAgent
-
 from agents.diagnosis_agent.data_loader import load_metrics, load_logs
+from agents.monitoring_agent.service_detector import ServiceDetector
 
 
 LOG_GROUP = os.getenv("LOG_GROUP")
@@ -21,12 +21,13 @@ STATUS_ALERT_THRESHOLD = 4
 STATUS_WINDOW_SECONDS = 120
 ZSCORE_THRESHOLD = 2.5
 
+
 metrics_l = load_metrics("metrics/metrics_history.log")
 logs_l = load_logs("logs/monitor_logs.log")
 
 diagnostic_agent = DiagnosticAgent(
     metrics=metrics_l,
-    logs=logs_l 
+    logs=logs_l
 )
 
 
@@ -34,123 +35,108 @@ class MonitoringAgent(BaseAgent):
 
     def __init__(self):
         super().__init__(
-    name="MonitoringAgent",
-    description="Monitors AWS EC2 logs and metrics, detects anomalies and triggers remediation"
-)
-
+            name="MonitoringAgent"
+        )
         self.seen_logs = set()
         self.status_events = []
         self.metric_history = {}
+        self.last_log_ts = int(
+            (datetime.now(timezone.utc) - timedelta(minutes=5)).timestamp() * 1000
+        )
 
-#    ---------------- LOGS ----------------
+    # ==========================
+    # LOG MONITORING
+    # ==========================
     def poll_logs(self):
-        print(f"[LOG] Monitoring {LOG_GROUP} and saving to local storage...")
-        
-        # Use milliseconds for AWS API
-        self.last_log_ts = int((datetime.now(timezone.utc) - timedelta(minutes=5)).timestamp() * 1000)
+        print(f"[LOG] Monitoring {LOG_GROUP} dynamically...")
 
         while True:
             try:
-                next_token = None
-                while True:
-                    params = {
-                        "logGroupName": LOG_GROUP,
-                        "startTime": self.last_log_ts,
-                        "interleaved": True
-                    }
-                    if next_token:
-                        params["nextToken"] = next_token
+                resp = logs_client.filter_log_events(
+                    logGroupName=LOG_GROUP,
+                    startTime=self.last_log_ts,
+                    interleaved=True
+                )
 
-                    resp = logs_client.filter_log_events(**params)
-                    events = resp.get("events", [])
+                for ev in resp.get("events", []):
+                    self.last_log_ts = max(self.last_log_ts, ev["timestamp"] + 1)
 
-                    for ev in events:
-                        # 1. Update timestamp tracker
-                        self.last_log_ts = max(self.last_log_ts, ev["timestamp"] + 1)
-                        
-                        msg = ev["message"]
-                        if not isinstance(msg, str):
-                            continue
+                    msg = ev.get("message", "")
+                    if not isinstance(msg, str):
+                        continue
 
-                        ts_ms = ev["timestamp"]
-                        ts_iso = datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc).isoformat()
+                    ts_iso = datetime.fromtimestamp(
+                        ev["timestamp"] / 1000,
+                        tz=timezone.utc
+                    ).isoformat()
 
-                        # 2. SAVE to local log file (as requested)
-                        save_local_log(f"{ts_iso} {msg}")
+                    save_local_log(f"{ts_iso} {msg}")
 
-                        # 3. CLASSIFY and alert if ERROR/WARN
-                        category = classify_log(msg)
-                        if category:
+                    # ---------------- SERVICE DETECTION (FROM LOG)
+                    service = ServiceDetector.detect_service(message=msg)
+
+                    # ---------------- KEYWORD ALERT
+                    category = classify_log(msg)
+                    if category:
+                        alert = {
+                            "type": category,
+                            "service": service,
+                            "timestamp": ts_iso,
+                            "message": msg
+                        }
+
+                        append_json("storage/log_alerts.json", alert)
+                        diagnosis = diagnostic_agent.handle_anomaly(alert)
+
+                        if diagnosis:
+                            remediation_agent({
+                                "alert": alert,
+                                "diagnosis": diagnosis,
+                                "service": service
+                            })
+
+                    # ---------------- HTTP STATUS ALERT
+                    status = detect_http_status(msg)
+                    if status:
+                        now = datetime.now(timezone.utc)
+                        self.status_events.append((now, status))
+                        self.status_events = [
+                            e for e in self.status_events
+                            if e[0] > now - timedelta(seconds=STATUS_WINDOW_SECONDS)
+                        ]
+
+                        count = sum(1 for _, s in self.status_events if s == status)
+
+                        if count >= STATUS_ALERT_THRESHOLD:
                             alert = {
-    "type": category,
-    "service": "api",
-    "timestamp": ts_iso,
-    "message": msg
-    }
-                            
+                                "type": "status_repeated",
+                                "service": service,
+                                "timestamp": ts_iso,
+                                "status": status,
+                                "count": count
+                            }
 
-
-                            print(f"[ALERT] Detected :" , type(alert))
-                            diagnosis = diagnostic_agent.handle_anomaly(alert)
-                            print(f"[DIAGNOSIS] Results:", diagnosis)
                             append_json("storage/log_alerts.json", alert)
+                            diagnosis = diagnostic_agent.handle_anomaly(alert)
 
                             if diagnosis:
                                 remediation_agent({
-                                     "alert": alert,
-                                     "diagnosis": diagnosis,
-                                     "service": "mainproject",
-                                 })
-
-
-                        # 4. DETECT HTTP status codes (e.g., 404, 500)
-                        status = detect_http_status(msg)
-                        if status:
-                            now = datetime.now(timezone.utc)
-                            self.status_events.append((now, status))
-                            # Keep only logs within the window
-                            self.status_events = [
-                                e for e in self.status_events
-                                if e[0] > now - timedelta(seconds=STATUS_WINDOW_SECONDS)
-                            ]
-                            count = sum(1 for _, s in self.status_events if s == status)
-                            if count >= STATUS_ALERT_THRESHOLD:
-                                alert = {
-    "type": "status_repeated",
-    "service": "api",
-    "timestamp": ts_iso,
-    "status": status,
-    "count": count
-    }
-
-                                append_json("storage/log_alerts.json", alert)
-                                diagnosis = diagnostic_agent.handle_anomaly(alert)
-                                print("Diagnosis sending to remediation agent.")
-
-                                if diagnosis:
-                                    remediation_agent({
-                                        "alert": alert,
-                                        "diagnosis": diagnosis,
-                                        "service": "mainproject",
-                                    })
-                                print("Diagnosis sent to remediation agent.")
-
-                    next_token = resp.get("nextToken")
-                    
-                    # If we found events, we processed them, so wait for new ones.
-                    # If no events but no token, we are at the "head" of the log, so wait.
-                    if events or not next_token:
-                        break
+                                    "alert": alert,
+                                    "diagnosis": diagnosis,
+                                    "service": service
+                                })
 
             except Exception as e:
-                print(f"[ERR] log polling session: {e}")
+                print("[ERR] log polling:", e)
 
             time.sleep(5)
 
-    # ---------------- METRICS (LIVE, NO HARDCODING) ----------------
-
+    # ==========================
+    # METRIC MONITORING
+    # ==========================
     def poll_metrics(self):
-        print("[METRIC] Discovering live EC2 metrics from {INSTANCE_ID}...")
+        print("[METRIC] Monitoring CloudWatch metrics dynamically...")
+
         while True:
             try:
                 discovered = cw_client.list_metrics(
@@ -182,7 +168,7 @@ class MonitoringAgent(BaseAgent):
                         tzinfo=timezone.utc
                     ).isoformat()
 
-                    # ---- STORE METRIC (PERSISTENT) ----
+                    # --------- STORE METRIC
                     metric_record = {
                         "timestamp": ts_iso,
                         "namespace": namespace,
@@ -192,113 +178,48 @@ class MonitoringAgent(BaseAgent):
                     }
                     append_metric(metric_record)
 
-                    # ---- Z-SCORE DETECTION ----
+                    # --------- SERVICE DETECTION (FROM METRIC)
+                    service = ServiceDetector.detect_service(
+                        metric_name=metric_name,
+                        namespace=namespace,
+                        dimensions=dimensions
+                    )
+
+                    # --------- ZSCORE DETECTION
                     self.metric_history.setdefault(metric_name, []).append(value)
                     zs = rolling_zscore(self.metric_history[metric_name])
 
                     if zs[-1] is not None and abs(zs[-1]) > ZSCORE_THRESHOLD:
                         alert = {
-    "type": "metric_anomaly",
-    "service": "api",
-    "metric": metric_name,
-    "namespace": namespace,
-    "value": value,
-    "zscore": float(zs[-1]),
-    "timestamp": ts_iso
-}
+                            "type": "metric_anomaly",
+                            "service": service,
+                            "metric": metric_name,
+                            "namespace": namespace,
+                            "value": value,
+                            "zscore": float(zs[-1]),
+                            "timestamp": ts_iso
+                        }
 
                         append_json("storage/metric_alerts.json", alert)
-
                         diagnosis = diagnostic_agent.handle_anomaly(alert)
 
                         if diagnosis:
                             remediation_agent({
                                 "alert": alert,
                                 "diagnosis": diagnosis,
-                                "service": "api",
+                                "service": service
                             })
-
 
             except Exception as e:
                 print("[ERR] metric polling:", e)
 
             time.sleep(20)
-    
-    # def poll_logs_from_file(self, file_path="logs/test_logs.log"):
-    #     print("[LOG] Reading predefined logs from file for testing...")
 
-    #     with open(file_path, "r") as f:
-    #         for line in f:
-    #             msg = line.strip()
-    #             if not msg:
-    #                 continue
-
-    #             ts_iso = datetime.now(timezone.utc).isoformat()
-
-    #             # Save locally (same as AWS flow)
-    #             save_local_log(f"{ts_iso} {msg}")
-
-    #             # 1. Keyword-based detection
-    #             category = classify_log(msg)
-    #             if category:
-    #                 alert = {
-    #                     "type": category,
-    #                     "service": "api",
-    #                     "timestamp": ts_iso,
-    #                     "message": msg
-    #                 }
-
-    #                 print("[ALERT]", alert)
-
-    #                 diagnoses = diagnostic_agent.handle_anomaly(alert)
-    #                 print("[DIAGNOSIS]", diagnoses)
-    #                 if diagnoses:
-    #                     remediation_agent({
-    #                         "alert": alert,
-    #                         "diagnosis": diagnoses
-    #                     })
-    #                     print("Diagnosis sent to remediation agent.")
-    #             # 2. HTTP status detection
-    #             status = detect_http_status(msg)
-    #             if status:
-    #                 alert = {
-    #                     "type": "status_repeated",
-    #                     "service": "api",
-    #                     "timestamp": ts_iso,
-    #                     "status": status,
-    #                     "count": 1
-    #                 }
-
-    #                 diagnoses = diagnostic_agent.handle_anomaly(alert)
-    #                 print("[DIAGNOSIS]", diagnoses)
-    #                 if diagnoses:
-    #                     remediation_agent({
-    #                         "alert": alert,
-    #                         "diagnosis": diagnoses
-    #                     })
-    #                     print("Diagnosis sent to remediation agent.")
-    #             time.sleep(2)  # simulate real-time logs
-
-    # async def run(self, message: str = "", context: dict = None):
-    #     """
-    #     Entry point for orchestrator / agent runtime.
-    #     Monitoring agents usually ignore message content.
-    #     """
-    #     if context is None:
-    #         context = {}
-
-    #     # Start background monitoring only once
-    #     if not context.get("monitoring_started"):
-    #         context["monitoring_started"] = True
-    #         self.start()
-
-    #     return "Monitoring agent running"
-
-
-    # ---------------- START ----------------
+    # ==========================
+    # START THREADS
+    # ==========================
     def start(self):
         threading.Thread(target=self.poll_logs, daemon=True).start()
-        threading.Thread(target=self.poll_metrics, daemon=True).start()        
-        #threading.Thread( target=self.poll_logs_from_file,args=("./logs/monitor_logs.log",),daemon=True).start()
+        threading.Thread(target=self.poll_metrics, daemon=True).start()
         while True:
             time.sleep(1)
