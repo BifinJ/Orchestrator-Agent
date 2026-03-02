@@ -1,15 +1,13 @@
-# agents/diagnosis_agent/diagnostic_agent.py (updated)
+# agents/diagnosis_agent/diagnostic_agent.py
 
 from typing import Dict, List, Optional
 from datetime import datetime
-import logging
-import json
-from pathlib import Path
 from agents.diagnosis_agent.dependency_graph import (
     dependency_graph,
     get_root_cause_candidates,
     analyze_impact
 )
+from agents.diagnosis_agent.llm_fallback import LLMDiagnosticFallback
 
 
 class DiagnosticAgent:
@@ -20,7 +18,8 @@ class DiagnosticAgent:
     def __init__(self, metrics: List[Dict], logs: List[Dict]):
         self.metrics = metrics
         self.logs = logs
-        self.recent_alerts = []  
+        self.recent_alerts = []  # Track recent alerts for correlation
+        self.llm_fallback = LLMDiagnosticFallback()  # Initialize LLM fallback
         
     def handle_anomaly(self, alert: Dict) -> List[Dict]:
         """
@@ -66,32 +65,25 @@ class DiagnosticAgent:
         
         # Sort by confidence
         diagnoses = sorted(diagnoses, key=lambda d: d.get("confidence", 0), reverse=True)
-        # logging for future analysis
-        log_file = Path("./storage/diagnosis.log")
-        logger = logging.getLogger("diagnosis")
-        logger.setLevel(logging.DEBUG)
-        logger.propagate = False  # 🔹 prevent Uvicorn from writing to the same handler
-
-        # File handler in append mode
-        file_handler = logging.FileHandler(log_file, mode="a")  # append mode
-        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-        file_handler.setFormatter(formatter)
-        # logger.addHandler(file_handler)
-
-        # # Optional: console logs
-        # console_handler = logging.StreamHandler()
-        # console_handler.setFormatter(formatter)
-        # logger.addHandler(console_handler)
-
-        # # Logging example
-        # if not diagnoses:
-        #     logger.info("No dependency issues found for service '%s'", service)
-        # else:
-        #     logger.info(
-        #         "Dependency diagnoses for service '%s': %s",
-        #         service,
-        #         diagnoses
-        #     )
+        
+        # LLM FALLBACK: Use LLM if diagnoses are insufficient
+        if self.llm_fallback.should_use_llm(diagnoses, alert):
+            print("[DIAG] Rule-based diagnosis insufficient, consulting LLM...")
+            
+            llm_diagnosis = self.llm_fallback.diagnose_with_llm(
+                alert=alert,
+                existing_diagnoses=diagnoses,
+                recent_alerts=self.recent_alerts[-10:],
+                metrics=self._get_recent_metrics(alert.get("service")),
+                logs=self._get_recent_logs(alert.get("service"))
+            )
+            
+            if llm_diagnosis:
+                # Add LLM diagnosis to the list
+                diagnoses.insert(0, llm_diagnosis)  # Add at the top
+                print(f"[DIAG] LLM diagnosis: {llm_diagnosis['root_cause']} "
+                      f"(confidence: {llm_diagnosis['confidence']:.2f})")
+        
         return diagnoses
     
     def _analyze_direct_service(self, alert: Dict) -> Optional[Dict]:
@@ -181,7 +173,7 @@ class DiagnosticAgent:
                     "impact_analysis": analyze_impact(dep_service)
                 })
 
-        return diagnoses
+            return diagnoses
     
     def _detect_cascading_failures(self, alert: Dict) -> Optional[Dict]:
         """
@@ -422,6 +414,11 @@ class DiagnosticAgent:
             })
         
         return actions
+    
+    def _get_recent_logs(self, service: str, minutes: int = 10) -> List[Dict]:
+        """Get recent logs for a service."""
+        # Filter logs by service
+        return [log for log in self.logs[-50:] if log.get("service") == service]
     
     def _cleanup_old_alerts(self, max_age_minutes: int = 30):
         """Remove alerts older than max_age_minutes."""
