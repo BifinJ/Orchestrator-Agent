@@ -1,0 +1,21 @@
+{
+    "system_comparison": {
+        "rule": {
+            "accuracy": 0.8433333333333334,
+            "avg_latency": 2.6053057776557074e-05
+        },
+        "llm": {
+            "accuracy": 0.36,
+            "avg_latency": 0.08256880972120496
+        },
+        "proposed": {
+            "accuracy": 0.0,
+            "avg_latency": 0.00014353434244791666
+        }
+    },
+    "data_source_comparison": {
+        "logs": 0.0,
+        "metrics": 0.0,
+        "combined": 0.0
+    }
+}

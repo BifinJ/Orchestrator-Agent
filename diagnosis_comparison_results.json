@@ -1,0 +1,33 @@
+{
+    "system_comparison": {
+        "rule_based": {
+            "accuracy": 0.7633333333333333,
+            "avg_latency_sec": 2.045313517252604e-05,
+            "tests": 900
+        },
+        "llm_based": {
+            "accuracy": 0.3411111111111111,
+            "avg_latency_sec": 0.07893831650416057,
+            "tests": 900
+        },
+        "proposed_agent": {
+            "accuracy": 0.98,
+            "avg_latency_sec": 0.00034655226601494686,
+            "tests": 900
+        }
+    },
+    "input_type_comparison": {
+        "logs": {
+            "accuracy": 0.8766666666666667,
+            "tests": 300
+        },
+        "metrics": {
+            "accuracy": 0.5066666666666667,
+            "tests": 300
+        },
+        "combined": {
+            "accuracy": 0.9066666666666666,
+            "tests": 300
+        }
+    }
+}
