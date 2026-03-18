@@ -85,19 +85,15 @@ class SummaryAgent(BaseAgent):
             "query": query,
             "period": f"{start.date()} to {now.date()}",
 
-            # Logs + metrics
             "log_count": len(logs),
             "recent_logs": logs[-15:],
             "metric_stats": metric_stats,
 
-            # Alerts
-            "remediation_count": len(alerts),
+            "remediation_count": len(knowledge_logs),
 
-            # NEW: learning layer
             "knowledge_stats": knowledge_stats,
             "diagnosis_stats": diagnosis_stats,
 
-            # Optional
             "action_stats": action_stats,
             "approval_stats": approval_stats
         }

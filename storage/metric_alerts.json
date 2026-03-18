@@ -997,5 +997,23 @@
     "value": 181.6,
     "zscore": 2.928304027345319,
     "timestamp": "2026-03-18T06:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSWriteOps",
+    "namespace": "AWS/EC2",
+    "value": 26.25,
+    "zscore": -3.0319903523474667,
+    "timestamp": "2026-03-18T13:45:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSWriteBytes",
+    "namespace": "AWS/EC2",
+    "value": 1485824.0,
+    "zscore": -4.170638135951265,
+    "timestamp": "2026-03-18T13:45:00+00:00"
   }
 ]
