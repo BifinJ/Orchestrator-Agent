@@ -1,6 +1,6 @@
 {
   "restart_api": {
-    "success": 2,
+    "success": 9,
     "failure": 1,
     "total_recovery_time": 0.0
   },

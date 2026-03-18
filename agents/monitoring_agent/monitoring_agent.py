@@ -2,6 +2,7 @@ import time
 import threading
 from datetime import datetime, timedelta, timezone
 import os
+import json
 
 from agents.base_agent import BaseAgent
 from agents.monitoring_agent.aws_helper import logs_client, cw_client
@@ -120,6 +121,7 @@ class MonitoringAgent(BaseAgent):
                             diagnosis = diagnostic_agent.handle_anomaly(alert)
 
                             if diagnosis:
+                                self._store_diagnosis(alert, diagnosis[0])
                                 remediation_agent({
                                     "alert": alert,
                                     "diagnosis": diagnosis,

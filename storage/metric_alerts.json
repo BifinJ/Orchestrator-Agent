@@ -916,5 +916,86 @@
     "value": 141721.6,
     "zscore": 3.514485283123691,
     "timestamp": "2026-02-18T09:05:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 36.0,
+    "zscore": 9.766555256481645,
+    "timestamp": "2026-03-18T05:55:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSReadOps",
+    "namespace": "AWS/EC2",
+    "value": 4494.2,
+    "zscore": 3.39852466973278,
+    "timestamp": "2026-03-18T05:55:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSWriteBytes",
+    "namespace": "AWS/EC2",
+    "value": 11835289.6,
+    "zscore": 4.913095529947455,
+    "timestamp": "2026-03-18T05:55:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "NetworkIn",
+    "namespace": "AWS/EC2",
+    "value": 9326.0,
+    "zscore": 8.390756763220962,
+    "timestamp": "2026-03-18T05:55:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "CPUUtilization",
+    "namespace": "AWS/EC2",
+    "value": 0.0,
+    "zscore": -9.601569898314903,
+    "timestamp": "2026-03-18T06:00:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "NetworkPacketsOut",
+    "namespace": "AWS/EC2",
+    "value": 41.4,
+    "zscore": 4.368256707963335,
+    "timestamp": "2026-03-18T06:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSReadOps",
+    "namespace": "AWS/EC2",
+    "value": 3209.2,
+    "zscore": 2.7629924061179914,
+    "timestamp": "2026-03-18T06:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "CPUUtilization",
+    "namespace": "AWS/EC2",
+    "value": 7.138153245337759,
+    "zscore": 7.955711877976957,
+    "timestamp": "2026-03-18T06:10:00+00:00"
+  },
+  {
+    "type": "metric_anomaly",
+    "service": "compute",
+    "metric": "EBSWriteOps",
+    "namespace": "AWS/EC2",
+    "value": 181.6,
+    "zscore": 2.928304027345319,
+    "timestamp": "2026-03-18T06:10:00+00:00"
   }
 ]

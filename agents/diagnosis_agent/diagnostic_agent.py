@@ -8,6 +8,8 @@ from agents.diagnosis_agent.dependency_graph import (
     analyze_impact
 )
 from agents.diagnosis_agent.llm_fallback import LLMDiagnosticFallback
+import os
+import json
 
 
 class DiagnosticAgent:
@@ -20,7 +22,45 @@ class DiagnosticAgent:
         self.logs = logs
         self.recent_alerts = []  # Track recent alerts for correlation
         self.llm_fallback = LLMDiagnosticFallback()  # Initialize LLM fallback
-        
+
+    def _store_diagnosis(self, alert: Dict, diagnosis: Dict, rank: int):
+        """
+        Persist each diagnosis result to JSONL file.
+        """
+        try:
+            os.makedirs("storage", exist_ok=True)
+            file_path = os.path.join("storage", "diagnosis_logs.jsonl")
+
+            log_entry = {
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "service": alert.get("service"),
+                "alert_type": alert.get("type"),
+
+                # Diagnosis info
+                "root_cause": diagnosis.get("root_cause"),
+                "category": diagnosis.get("category"),
+                "confidence": diagnosis.get("confidence"),
+                "rank": rank,  # 👈 IMPORTANT
+
+                # Evidence
+                "evidence": diagnosis.get("evidence"),
+
+                # Action (take first recommended)
+                "recommended_action": (
+                    diagnosis.get("recommended_actions")[0]["action"]
+                    if diagnosis.get("recommended_actions") else None
+                ),
+
+                # Impact
+                "impact_summary": diagnosis.get("impact_analysis", {})
+            }
+
+            with open(file_path, "a") as f:
+                f.write(json.dumps(log_entry) + "\n")
+
+        except Exception as e:
+            print(f"[DIAG][ERROR] Failed to store diagnosis: {e}")
+
     def handle_anomaly(self, alert: Dict) -> List[Dict]:
         """
         Main entry point for anomaly diagnosis.
@@ -84,6 +124,8 @@ class DiagnosticAgent:
                 print(f"[DIAG] LLM diagnosis: {llm_diagnosis['root_cause']} "
                       f"(confidence: {llm_diagnosis['confidence']:.2f})")
         
+        for i, diagnosis in enumerate(diagnoses):
+            self._store_diagnosis(alert, diagnosis, rank=i + 1)
         return diagnoses
     
     def _analyze_direct_service(self, alert: Dict) -> Optional[Dict]:
